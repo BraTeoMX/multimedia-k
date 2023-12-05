@@ -32,7 +32,7 @@ class VideoController extends Controller
             $videoPath = $videoFile->store('videos', 'public'); // Cambia 'public' por el disco que desees usar
 
             $video = new Video();
-            $video->titulo = $tituloVideo;
+            $video->titulo = strtoupper($tituloVideo);
             $video->descripcion = $descripcionVideo;
             $video->estatus = "A";
             $video->link = $videoPath; // Asegúrate de tener una columna en tu base de datos para la ruta del video
@@ -57,9 +57,9 @@ class VideoController extends Controller
 
     public function videoMostrar(Request $request)
     {
-        $mensaje = "Hola mundo ";
+        $mensaje = "Hola mundo";
         $Videos = Video::all();
-        return  view('video.video', compact('mensaje', 'Videos')); 
+        return  view('video.videoMostrar', compact('mensaje', 'Videos'));  
     }
 
 }

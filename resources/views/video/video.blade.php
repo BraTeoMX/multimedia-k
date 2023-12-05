@@ -27,7 +27,6 @@
     <div class="container-fluid">
         <div class="card-header card-header-info card-header-icon">
           <h3>{{ $mensaje }}</h3>
-          <p>Video</p>
 
           <form method="POST" action="{{ route('registroVideo') }}" enctype="multipart/form-data">
             @csrf
@@ -84,7 +83,7 @@
                             <tr>
                                 <td>{{ $video->id }}</td></td>
                                 <td>{{ $video->titulo }}</td>
-                                <td style="text-align: letf">{{ $video->descripcion}}</td>
+                                <td style="text-align: left;">{{ $video->descripcion}}</td>
                                 <td>
                                   <form action="{{ route('video.ActualizarEstatus', $video->id) }}" method="POST">
                                       @csrf
@@ -188,6 +187,12 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
+    <script>
+      document.getElementById('tituloVideo').addEventListener('input', function(e) {
+          e.target.value = e.target.value.toUpperCase();
+      });
+
+  </script>
 @endsection
 
 
