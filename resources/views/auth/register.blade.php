@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'register', 'title' => __('Avances de la Producción')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'register', 'title' => __('Centro de Desarrollo de Habilidades de Intimark')])
 
 @section('content')
 <div class="container" style="height: auto;">

@@ -10,13 +10,16 @@
   </div>
   <div class="sidebar-wrapper" >
     <ul class="nav">
+      {{-- Inicio Apartado del boton cafe de la barra de opciones  --}}
       <li class="nav-item{{ $activePage == 'avanceproduccion' ? ' active' : '' }}"  >
         <a class="nav-link" href="{{ route('home') }}">
-          <i class="material-icons" >avanceproduccion</i>
-            <p >{{ __('Avance Diario') }}</p>
+          <i class="material-icons" >home</i>
+            <p >{{ __('Home - Inicio') }}</p>
         </a>
       </li>
-      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
+      {{-- Fin Apartado del boton cafe de la barra de opciones  --}}
+
+      <li class="nav-item ">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample2" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
           <p>{{ __('Planeación') }}
@@ -25,47 +28,32 @@
         </a>
         <div class="collapse hide" id="laravelExample2">
           <ul class="nav">
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('vpf.index') }}">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('home') }}">
                 <span class="sidebar-mini">  </span>
                 <span class="sidebar-normal">{{ __('Actualización') }} </span>
               </a>
             </li>
 
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('vpf.altasybajasTLyM') }}">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('home') }}">
                 <span class="sidebar-mini">  </span>
                 <span class="sidebar-normal">Altas y bajas </span>
               </a>
             </li>
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('vpf.modificacionTablaTLyM') }}">
-                <span class="sidebar-mini">  </span>
-                <span class="sidebar-normal"> Modificacion TL y M </span>
-              </a>
-            </li>
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('vpf.tablaTLyM') }}">
-                <span class="sidebar-mini">  </span>
-                <span class="sidebar-normal">Tabla TL y M </span>
-              </a>
-            </li>
+            
           </ul>
         </div>    
       </li>
 
-      <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
+      <li class="nav-item">
         <a class="nav-link" href="{{ route('prueba.sorteo') }}">
           <span class="sidebar-mini">  </span>
           <span class="sidebar-normal">Sorteo </span>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('prueba.resultadoSorteo') }}">
-          <span class="sidebar-mini">  </span>
-          <span class="sidebar-normal">Resultado Sorteo </span>
-        </a>
-      </li>
+
+
     </ul>
   </div>
 </div>
