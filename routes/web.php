@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
+
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 
@@ -67,6 +67,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/resultadoSorteo', 'App\Http\Controllers\pruebaController@resultadoSorteo')->name('prueba.resultadoSorteo');
 	Route::get('/obtener-ganador', 'App\Http\Controllers\pruebaController@obtenerGanador')->name('obtenerGanador');
 	Route::post('/registroSorteo', 'App\Http\Controllers\PruebaController@registroSorteo')->name('registroSorteo');
-
+	//seccion para subir archivos 
+	Route::get('/video', 'App\Http\Controllers\videoController@video')->name('video.video');
+	Route::get('/videoMostrar', 'App\Http\Controllers\videoController@videoMostrar')->name('video.videoMostrar');
+	Route::post('/registroVideo', 'App\Http\Controllers\VideoController@registroVideo')->name('registroVideo');
+	// Ruta para actualizar el estatus de un video 
+	Route::patch('/video/{id}/update-status', 'App\Http\Controllers\VideoController@ActualizarEstatus')->name('video.ActualizarEstatus');
 });
 

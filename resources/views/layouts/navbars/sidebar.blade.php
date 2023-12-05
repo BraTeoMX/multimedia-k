@@ -13,12 +13,11 @@
       {{-- Inicio Apartado del boton cafe de la barra de opciones  --}}
       <li class="nav-item{{ $activePage == 'avanceproduccion' ? ' active' : '' }}"  >
         <a class="nav-link" href="{{ route('home') }}">
-          <i class="material-icons" >home</i>
             <p >{{ __('Home - Inicio') }}</p>
         </a>
       </li>
       {{-- Fin Apartado del boton cafe de la barra de opciones  --}}
-
+      {{-- Inicio Apartado de Menu desplegable --}}
       <li class="nav-item ">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample2" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
@@ -45,11 +44,48 @@
           </ul>
         </div>    
       </li>
+      {{-- Fin Apartado de Menu desplegable --}}
+
+      {{-- Inicio Apartado de Menu desplegable --}}
+      <li class="nav-item ">
+        <a class="nav-link" data-toggle="collapse" href="#laravelExample1" aria-expanded="true">
+          <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
+          <p>{{ __('Planeación') }}
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse hide" id="laravelExample1">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('home') }}">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal">{{ __('Actualización') }} </span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('home') }}">
+                <span class="sidebar-mini">  </span>
+                <span class="sidebar-normal">Altas y bajas </span>
+              </a>
+            </li>
+            
+          </ul>
+        </div>    
+      </li>
+      {{-- Fin Apartado de Menu desplegable --}}
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('prueba.sorteo') }}">
+        <a class="nav-link" href="{{ route('video.video') }}">
           <span class="sidebar-mini">  </span>
-          <span class="sidebar-normal">Sorteo </span>
+          <span class="sidebar-normal">Carga videos </span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('video.videoMostrar') }}">
+          <span class="sidebar-mini">  </span>
+          <span class="sidebar-normal">Mostrar videos </span>
         </a>
       </li>
 
