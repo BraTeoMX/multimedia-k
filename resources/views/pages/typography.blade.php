@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title">Avances de la Producción Heading</h4>
+        <h4 class="card-title">Centro de Desarrollo de Habilidades de Intimark Heading</h4>
         <p class="card-category">Created using Roboto Font Family</p>
       </div>
       <div class="card-body">
@@ -16,27 +16,27 @@
           <div class="row">
             <div class="tim-typo">
               <h1>
-                <span class="tim-note">Header 1</span>The Life of Avances de la Producción </h1>
+                <span class="tim-note">Header 1</span>The Life of Centro de Desarrollo de Habilidades de Intimark </h1>
             </div>
             <div class="tim-typo">
               <h2>
-                <span class="tim-note">Header 2</span>The Life of Avances de la Producción</h2>
+                <span class="tim-note">Header 2</span>The Life of Centro de Desarrollo de Habilidades de Intimark</h2>
             </div>
             <div class="tim-typo">
               <h3>
-                <span class="tim-note">Header 3</span>The Life of Avances de la Producción</h3>
+                <span class="tim-note">Header 3</span>The Life of Centro de Desarrollo de Habilidades de Intimark</h3>
             </div>
             <div class="tim-typo">
               <h4>
-                <span class="tim-note">Header 4</span>The Life of Avances de la Producción</h4>
+                <span class="tim-note">Header 4</span>The Life of Centro de Desarrollo de Habilidades de Intimark</h4>
             </div>
             <div class="tim-typo">
               <h5>
-                <span class="tim-note">Header 5</span>The Life of Avances de la Producción</h5>
+                <span class="tim-note">Header 5</span>The Life of Centro de Desarrollo de Habilidades de Intimark</h5>
             </div>
             <div class="tim-typo">
               <h6>
-                <span class="tim-note">Header 6</span>The Life of Avances de la Producción</h6>
+                <span class="tim-note">Header 6</span>The Life of Centro de Desarrollo de Habilidades de Intimark</h6>
             </div>
             <div class="tim-typo">
               <p>

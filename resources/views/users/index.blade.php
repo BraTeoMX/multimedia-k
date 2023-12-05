@@ -12,12 +12,12 @@
 
     <!--  Social tags      -->
     <meta name="keywords" content="creative tim, html dashboard, laravel, html css dashboard laravel, web dashboard, bootstrap 4 dashboard laravel, bootstrap 4, css3 dashboard, bootstrap 4 admin laravel, material ui dashboard bootstrap 4 laravel, frontend, responsive bootstrap 4 dashboard, material design, material laravel bootstrap 4 dashboard">
-    <meta name="description" content="Avances de la Producción Laravel is a Free Material Bootstrap Admin Preset for Laravel with a fresh, new design inspired by Google's Material Design.">
+    <meta name="description" content="Centro de Desarrollo de Habilidades de Intimark Laravel is a Free Material Bootstrap Admin Preset for Laravel with a fresh, new design inspired by Google's Material Design.">
 
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Avances de la Producción Laravel by Creative Tim">
-    <meta itemprop="description" content="Avances de la Producción Laravel is a Free Material Bootstrap Admin Preset for Laravel with a fresh, new design inspired by Google's Material Design.">
+    <meta itemprop="name" content="Centro de Desarrollo de Habilidades de Intimark Laravel by Creative Tim">
+    <meta itemprop="description" content="Centro de Desarrollo de Habilidades de Intimark Laravel is a Free Material Bootstrap Admin Preset for Laravel with a fresh, new design inspired by Google's Material Design.">
 
     <meta itemprop="image" content="https://s3.amazonaws.com/creativetim_bucket/products/154/opt_md_laravel_thumbnail.jpg">
 
@@ -25,23 +25,23 @@
     <!-- Twitter Card data -->
     <meta name="twitter:card" content="product">
     <meta name="twitter:site" content="@creativetim">
-    <meta name="twitter:title" content="Avances de la Producción Laravel by Creative Tim">
+    <meta name="twitter:title" content="Centro de Desarrollo de Habilidades de Intimark Laravel by Creative Tim">
 
-    <meta name="twitter:description" content="Avances de la Producción Laravel is a Free Material Bootstrap Admin Preset for Laravel with a fresh, new design inspired by Google's Material Design.">
+    <meta name="twitter:description" content="Centro de Desarrollo de Habilidades de Intimark Laravel is a Free Material Bootstrap Admin Preset for Laravel with a fresh, new design inspired by Google's Material Design.">
     <meta name="twitter:creator" content="@creativetim">
     <meta name="twitter:image" content="https://s3.amazonaws.com/creativetim_bucket/products/154/opt_md_laravel_thumbnail.jpg">
 
 
     <!-- Open Graph data -->
     <meta property="fb:app_id" content="655968634437471">
-    <meta property="og:title" content="Avances de la Producción Laravel by Creative Tim" />
+    <meta property="og:title" content="Centro de Desarrollo de Habilidades de Intimark Laravel by Creative Tim" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://material-dashboard-laravel.creative-tim.com/" />
     <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/154/opt_md_laravel_thumbnail.jpg"/>
-    <meta property="og:description" content="Avances de la Producción Laravel is a Free Material Bootstrap Admin Preset for Laravel with a fresh, new design inspired by Google's Material Design." />
+    <meta property="og:description" content="Centro de Desarrollo de Habilidades de Intimark Laravel is a Free Material Bootstrap Admin Preset for Laravel with a fresh, new design inspired by Google's Material Design." />
     <meta property="og:site_name" content="Creative Tim" />
     
-    <title>{{ __('Avances de la Producción Laravel - Free Frontend Preset for Laravel') }}</title>
+    <title>{{ __('Centro de Desarrollo de Habilidades de Intimark Laravel - Free Frontend Preset for Laravel') }}</title>
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('material') }}/img/apple-icon.png">
     <link rel="icon" type="image/png" href="{{ asset('material') }}/img/favicon.png">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -437,9 +437,9 @@
         <script src="{{ asset('material') }}/js/plugins/chartist.min.js"></script>
         <!--  Notifications Plugin    -->
         <script src="{{ asset('material') }}/js/plugins/bootstrap-notify.js"></script>
-        <!-- Control Center for Avances de la Producción: parallax effects, scripts for the example pages etc -->
+        <!-- Control Center for Centro de Desarrollo de Habilidades de Intimark: parallax effects, scripts for the example pages etc -->
         <script src="{{ asset('material') }}/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
-        <!-- Avances de la Producción DEMO methods, don't include it in your project! -->
+        <!-- Centro de Desarrollo de Habilidades de Intimark DEMO methods, don't include it in your project! -->
         <script src="{{ asset('material') }}/demo/demo.js"></script>
         <script src="{{ asset('material') }}/js/settings.js"></script>
         <script>
