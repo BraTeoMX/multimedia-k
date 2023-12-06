@@ -1,12 +1,12 @@
 @extends('layouts.app', ['activePage' => 'avanceproduccion', 'titlePage' => __('avanceproduccion')])
 
 @section('content')
-
+<h2 style="text-align: center">{{ $mensaje }}</h2>
   <div class="content">
   
     <div class="container-fluid">
         <div class="card-header card-header-info card-header-icon">
-          <h3>{{ $mensaje }}</h3>
+
           
           {{-- Cuadrícula de videos --}}
           <div class="row">

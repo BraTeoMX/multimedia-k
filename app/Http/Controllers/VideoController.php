@@ -12,7 +12,16 @@ class VideoController extends Controller
     {
         $mensaje = "Hola mundo ";
         $Videos = Video::all();
-        return  view('video.video', compact('mensaje', 'Videos')); 
+        $descripcionCategorias = [
+            'maquinariayEquipos' => 'Maquinaria y Equipos',
+            'calidad' => 'Calidad',
+            'induccion' => 'Inducción',
+            'equiposPesados' => 'Equipos Pesados',
+
+        ];
+
+
+        return  view('video.video', compact('mensaje', 'Videos', 'descripcionCategorias')); 
     }
     
     public function registroVideo(Request $request)
@@ -38,6 +47,7 @@ class VideoController extends Controller
             $video->estatus = "A";
             $video->link = $videoPath; // Asegúrate de tener una columna en tu base de datos para la ruta del video
             $video->categoria = $request->input('categoria'); 
+            $video->subcategoria = $request->input('subcategoria'); 
             $video->save();
             //dd($request->all());
             return back()->with('success', 'Todos los datos han sido actualizados correctamente.');
@@ -73,26 +83,49 @@ class VideoController extends Controller
     // apartado para las 4 secciones 
     public function maquinariayEquipos(Request $request)
     {
-        $mensaje = "maquinaria y Equipos";
+        $mensaje = "Maquinaria y Equipos";
         $Videos = Video::where('categoria', 'maquinariayEquipos')->get();
         //dd($Videos);
-        return  view('video.maquinariayEquipos', compact('mensaje', 'Videos'));  
+        $subcategorias = Video::where('categoria', 'maquinariayEquipos')
+                ->where('estatus', 'A')
+                ->select('subcategoria')
+                ->distinct()
+                ->get();
+
+        $videosPorSubcategoria = [];
+        $descripcionesSubcategorias = [
+            'partesAgujaColocacion' => 'Partes de Aguja y Colocación',
+            'tensiones' => 'Tesiones',
+            'partes' => 'Partes',
+            'enhebrado' => 'enhebrado',
+        ];
+        foreach ($subcategorias as $subcategoria) {
+        $videosPorSubcategoria[$subcategoria->subcategoria] = Video::where('categoria', 'maquinariayEquipos')
+                                                        ->where('estatus', 'A')
+                                                        ->where('subcategoria', $subcategoria->subcategoria)
+                                                        ->get();
+        }
+
+        return  view('video.maquinariayEquipos', compact('mensaje', 'Videos', 'videosPorSubcategoria', 'descripcionesSubcategorias'));  
     }
+
+
+
     public function metodos(Request $request)
     {
-        $mensaje = "metodos";
+        $mensaje = "Metodos";
         $Videos = Video::where('categoria', 'metodos')->get();
         return  view('video.metodos', compact('mensaje', 'Videos'));  
     }
     public function calidad(Request $request)
     {
-        $mensaje = "calidad";
+        $mensaje = "Calidad";
         $Videos = Video::where('categoria', 'calidad')->get();
         return  view('video.calidad', compact('mensaje', 'Videos'));  
     }
     public function induccion(Request $request)
     {
-        $mensaje = "induccion";
+        $mensaje = "Inducción";
         $Videos = Video::where('categoria', 'induccion')->get();
         return  view('video.induccion', compact('mensaje', 'Videos'));  
     }

@@ -51,21 +51,25 @@
               </div>
               <div class="col-md-6 form-group">
                 <label for="categoria" class="form-label">Categoría del video:</label>
-                <select class="custom-select" id="categoria" name="categoria" required>
-                    <option value="">Seleccione una categoría</option>
-                    <option value="maquinariayEquipos">Maquinaria y Equipos</option>
-                    <option value="metodos">Métodos</option>
-                    <option value="calidad">Calidad</option>
-                    <option value="induccion">Inducción</option>
-                </select>
-            </div>
-            
-            <div class="col-md-6 form-group">
-                <label for="subcategoria" class="form-label">Subcategoría:</label>
-                <select class="custom-select" id="subcategoria" name="subcategoria">
-                    <!-- Las opciones se añadirán dinámicamente aquí -->
-                </select>
-            </div>
+                <div class="col-md-6 form-group">
+                  <label for="categoria" class="form-label">Categoría del video:</label>
+                  <select class="custom-select" id="categoria" name="categoria" required>
+                      <option value="">Seleccione una categoría</option>
+                      <option value="maquinariayEquipos">Maquinaria y Equipos</option>
+                      <option value="metodos">Métodos</option>
+                      <option value="calidad">Calidad</option>
+                      <option value="induccion">Inducción</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-6 form-group">
+                    <label for="subcategoria" class="form-label">Subcategoría:</label>
+                    <select class="custom-select" id="subcategoria" name="subcategoria">
+                        <!-- Las opciones se añadirán dinámicamente aquí -->
+                    </select>
+                </div>
+              
+              </div>
             
             </div>
           
@@ -101,6 +105,7 @@
                             <th>ID </th>
                             <th>Titulo </th>
                             <th>Descripcion</th>
+                            <th>Categoria</th>
                             <th>Accion </th>
                         </tr>
                     </thead>
@@ -109,7 +114,9 @@
                             <tr>
                                 <td>{{ $video->id }}</td></td>
                                 <td>{{ $video->titulo }}</td>
+                                
                                 <td style="text-align: left;">{{ $video->descripcion}}</td>
+                                <td>{{ $descripcionCategorias[$video->categoria] ?? $video->categoria }}</td>
                                 <td>
                                   <form action="{{ route('video.ActualizarEstatus', $video->id) }}" method="POST">
                                       @csrf
@@ -228,7 +235,7 @@
         for (i = 1; i < tr.length; i++) { // Comienza en 1 para saltar el encabezado de la tabla
             // Obtén las celdas de "Team Leaders" y "Modulo"
             var tdLeader = tr[i].getElementsByTagName("td")[1];
-            var tdModule = tr[i].getElementsByTagName("td")[2];
+            var tdModule = tr[i].getElementsByTagName("td")[3];
             if (tdLeader || tdModule) {
                 if (tdLeader.textContent.toUpperCase().indexOf(filter) > -1 || tdModule.textContent.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
@@ -271,19 +278,27 @@
           e.target.value = e.target.value.toUpperCase();
       });
 
-  </script>
-  <script>
-    document.getElementById('categoria').addEventListener('change', function() {
-    var categoriaSeleccionada = this.value;
-    var subcategorias = document.getElementById('subcategoria');
-    subcategorias.innerHTML = ''; // Limpiar opciones anteriores
+      document.getElementById('categoria').addEventListener('change', function() {
+          var categoriaSeleccionada = this.value;
+          var subcategorias = document.getElementById('subcategoria');
+          subcategorias.innerHTML = ''; // Limpiar opciones anteriores
 
-    if(categoriaSeleccionada === 'maquinariayEquipos') {
-        var opciones = ['<option value="partes">Partes</option>', '<option value="herramientas">Herramientas</option>']; // Añade tus subcategorías aquí
-        subcategorias.innerHTML = opciones.join('');
-    }
-    // Añadir más condiciones para otras categorías y sus subcategorías
-});
+          if(categoriaSeleccionada === 'maquinariayEquipos') {
+              var opciones = ['<option value="partes">PARTES</option>', '<option value="enhebrado">ENHEBRADO</option>',
+                              '<option value="tensiones">TENSIONES</option>', '<option value="partesAgujaColocacion">PARTES DE LA AGUJA Y COLOCACION</option>']; // Añade tus subcategorías aquí
+              subcategorias.innerHTML = opciones.join('');
+          }else if(categoriaSeleccionada === 'metodos') {
+              var opciones = ['<option value="metodos">Metodos</option>']; // Añade tus subcategorías aquí
+              subcategorias.innerHTML = opciones.join('');
+          }else if(categoriaSeleccionada === 'induccion') {
+              var opciones = ['<option value="induccion">Inducción</option>']; // Añade tus subcategorías aquí
+              subcategorias.innerHTML = opciones.join('');
+          }else if(categoriaSeleccionada === 'calidad') {
+              var opciones = ['<option value="calidad">Calidad</option>']; // Añade tus subcategorías aquí
+              subcategorias.innerHTML = opciones.join('');
+          }
+          // Añadir más condiciones para otras categorías y sus subcategorías
+      });
 
   </script>
 @endsection
