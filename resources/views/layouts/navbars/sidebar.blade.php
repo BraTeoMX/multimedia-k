@@ -89,6 +89,12 @@
           <span class="sidebar-normal">Mostrar videos </span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('video.altaCategoriaSub') }}">
+          <span class="sidebar-mini">  </span>
+          <span class="sidebar-normal">Altas  </span>
+        </a>
+      </li>
 
       {{--Apartado para las 4 secciones, posiblemente se quiten 
       <li class="nav-item">

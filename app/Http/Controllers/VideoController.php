@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\Tbl_Empleado_SIA;
 use App\Sorteo;
-use App\Video;
+use App\Models\Video;
+use App\Models\Categoria;
+use App\Models\Subcategoria;
 use Illuminate\Http\Request;
 
 class VideoController extends Controller
@@ -11,28 +13,82 @@ class VideoController extends Controller
     public function video(Request $request)
     {
         $mensaje = "Hola mundo ";
-        $Videos = Video::all();
-        $descripcionCategorias = [
-            'maquinariayEquipos' => 'Maquinaria y Equipos',
-            'calidad' => 'Calidad',
-            'induccion' => 'Inducción',
-            'equiposPesados' => 'Equipos Pesados',
+        $Videos = Video::with('categoria')->get();
 
-        ];
+        $categorias = Categoria::all(); 
+       
+        //dd($Videos->first(), $Videos->first()->categoria);
 
-
-        return  view('video.video', compact('mensaje', 'Videos', 'descripcionCategorias')); 
+        return  view('video.video', compact('mensaje', 'Videos', 'categorias')); 
     }
+
+    public function altaCategoriaSub(Request $request)
+    {
+        $mensaje = "Hola mundo ";
+        $categorias = Categoria::all(); // Obtener todas las categorías
+
+
+        return  view('video.altaCategoriaSub', compact('mensaje', 'categorias')); 
+    }
+
+    public function storeCategoria(Request $request)
+    {
+        // Validar la entrada
+        $request->validate([
+            'nombre_categoria' => 'required|string|max:255',
+        ]);
+
+        // Crear una nueva categoría
+        $categoria = new Categoria();
+        $categoria->nombre = strtoupper($request->nombre_categoria);
+        $categoria->save();
+
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('video.altaCategoriaSub')
+                        ->with('success', 'Categoría creada con éxito.');
+    }
+
+    public function storeSubcategoria(Request $request)
+    {
+        // Validar la entrada
+        $request->validate([
+            'categoria_id' => 'required|exists:categoria,id',
+            'nombre_subcategoria' => 'required|string|max:255',
+        ]);
+
+        // Crear una nueva subcategoría
+        $subcategoria = new Subcategoria();
+        $subcategoria->categoria_id = $request->categoria_id;
+        $subcategoria->nombre = strtoupper($request->nombre_subcategoria);
+        $subcategoria->save();
+
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('video.altaCategoriaSub')
+                        ->with('success', 'Subcategoría creada con éxito.');
+    }
+
+    // En VideoController
+    public function obtenerSubcategorias($categoriaId)
+    {
+        $subcategorias = Subcategoria::where('categoria_id', $categoriaId)->get();
+        //dd($subcategorias);
+        return response()->json($subcategorias);
+    }
+
+
+
     
     public function registroVideo(Request $request)
     {
+        
         $request->validate([
             'tituloVideo' => 'required',
             'descripcionVideo' => 'required',
             'cargaVideo' => 'required|file|mimes:mp4,avi,mov', // Asegúrate de incluir los formatos que necesitas
-            'categoria' => 'required' 
+            'categoria_id' => 'required', 
+            'subcategoria_id' => 'required' 
         ]);
-
+        
         $tituloVideo = $request->input('tituloVideo');
         $descripcionVideo = $request->input('descripcionVideo');
         
@@ -46,8 +102,8 @@ class VideoController extends Controller
             $video->descripcion = $descripcionVideo;
             $video->estatus = "A";
             $video->link = $videoPath; // Asegúrate de tener una columna en tu base de datos para la ruta del video
-            $video->categoria = $request->input('categoria'); 
-            $video->subcategoria = $request->input('subcategoria'); 
+            $video->categoria_id = $request->input('categoria_id'); 
+            $video->subcategoria_id = $request->input('subcategoria_id'); 
             $video->save();
             //dd($request->all());
             return back()->with('success', 'Todos los datos han sido actualizados correctamente.');
@@ -84,29 +140,13 @@ class VideoController extends Controller
     public function maquinariayEquipos(Request $request)
     {
         $mensaje = "Maquinaria y Equipos";
-        $Videos = Video::where('categoria', 'maquinariayEquipos')->get();
-        //dd($Videos);
-        $subcategorias = Video::where('categoria', 'maquinariayEquipos')
-                ->where('estatus', 'A')
-                ->select('subcategoria')
-                ->distinct()
-                ->get();
 
-        $videosPorSubcategoria = [];
-        $descripcionesSubcategorias = [
-            'partesAgujaColocacion' => 'Partes de Aguja y Colocación',
-            'tensiones' => 'Tesiones',
-            'partes' => 'Partes',
-            'enhebrado' => 'enhebrado',
-        ];
-        foreach ($subcategorias as $subcategoria) {
-        $videosPorSubcategoria[$subcategoria->subcategoria] = Video::where('categoria', 'maquinariayEquipos')
-                                                        ->where('estatus', 'A')
-                                                        ->where('subcategoria', $subcategoria->subcategoria)
-                                                        ->get();
-        }
+        $subcategorias = Subcategoria::where('categoria_id',1)
+            ->with(['videos' => function($query) {
+                $query->where('estatus', 'A');
+        }])->get();
 
-        return  view('video.maquinariayEquipos', compact('mensaje', 'Videos', 'videosPorSubcategoria', 'descripcionesSubcategorias'));  
+        return view('video.maquinariayEquipos', compact('mensaje', 'subcategorias'));
     }
 
 

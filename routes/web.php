@@ -80,5 +80,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/induccion', 'App\Http\Controllers\videoController@induccion')->name('video.induccion');
 	Route::get('/maquinariayEquipos', 'App\Http\Controllers\videoController@maquinariayEquipos')->name('video.maquinariayEquipos');
 	Route::get('/metodos', 'App\Http\Controllers\videoController@metodos')->name('video.metodos');
+	Route::get('/altaCategoriaSub', 'App\Http\Controllers\videoController@altaCategoriaSub')->name('video.altaCategoriaSub');
+
+	//apartado apra las categorias y sub-categoria 
+	Route::post('/categoria/store', 'App\Http\Controllers\videoController@storeCategoria')->name('categoria.store');
+	Route::post('/subcategoria/store', 'App\Http\Controllers\videoController@storeSubcategoria')->name('subcategoria.store');
+	// En routes/web.php
+	Route::get('/video/{categoriaId}', 'App\Http\Controllers\videoController@obtenerSubcategorias');
+
+
 });
 

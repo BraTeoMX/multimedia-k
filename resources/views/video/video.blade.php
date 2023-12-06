@@ -53,20 +53,21 @@
                 <label for="categoria" class="form-label">Categoría del video:</label>
                 <div class="col-md-6 form-group">
                   <label for="categoria" class="form-label">Categoría del video:</label>
-                  <select class="custom-select" id="categoria" name="categoria" required>
-                      <option value="">Seleccione una categoría</option>
-                      <option value="maquinariayEquipos">Maquinaria y Equipos</option>
-                      <option value="metodos">Métodos</option>
-                      <option value="calidad">Calidad</option>
-                      <option value="induccion">Inducción</option>
-                    </select>
+                  <select class="custom-select" id="categoria" name="categoria_id" required>
+                    <option value="">Seleccione una categoría</option>
+                    @foreach($categorias as $categoria)
+                        <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                    @endforeach
+                </select>
+                
                 </div>
                 
                 <div class="col-md-6 form-group">
-                    <label for="subcategoria" class="form-label">Subcategoría:</label>
-                    <select class="custom-select" id="subcategoria" name="subcategoria">
-                        <!-- Las opciones se añadirán dinámicamente aquí -->
-                    </select>
+                  <select class="custom-select" id="subcategoria" name="subcategoria_id">
+                    <option value="">Primero seleccione una categoría</option>
+                    <!-- Las opciones se añadirán dinámicamente aquí -->
+                </select>
+                
                 </div>
               
               </div>
@@ -116,7 +117,7 @@
                                 <td>{{ $video->titulo }}</td>
                                 
                                 <td style="text-align: left;">{{ $video->descripcion}}</td>
-                                <td>{{ $descripcionCategorias[$video->categoria] ?? $video->categoria }}</td>
+                                <td>{{ optional($video->categoria)->nombre ?? 'Sin categoría' }}</td>
                                 <td>
                                   <form action="{{ route('video.ActualizarEstatus', $video->id) }}" method="POST">
                                       @csrf
@@ -277,30 +278,27 @@
       document.getElementById('tituloVideo').addEventListener('input', function(e) {
           e.target.value = e.target.value.toUpperCase();
       });
-
+    </script>
+    <script>
       document.getElementById('categoria').addEventListener('change', function() {
-          var categoriaSeleccionada = this.value;
-          var subcategorias = document.getElementById('subcategoria');
-          subcategorias.innerHTML = ''; // Limpiar opciones anteriores
-
-          if(categoriaSeleccionada === 'maquinariayEquipos') {
-              var opciones = ['<option value="partes">PARTES</option>', '<option value="enhebrado">ENHEBRADO</option>',
-                              '<option value="tensiones">TENSIONES</option>', '<option value="partesAgujaColocacion">PARTES DE LA AGUJA Y COLOCACION</option>']; // Añade tus subcategorías aquí
-              subcategorias.innerHTML = opciones.join('');
-          }else if(categoriaSeleccionada === 'metodos') {
-              var opciones = ['<option value="metodos">Metodos</option>']; // Añade tus subcategorías aquí
-              subcategorias.innerHTML = opciones.join('');
-          }else if(categoriaSeleccionada === 'induccion') {
-              var opciones = ['<option value="induccion">Inducción</option>']; // Añade tus subcategorías aquí
-              subcategorias.innerHTML = opciones.join('');
-          }else if(categoriaSeleccionada === 'calidad') {
-              var opciones = ['<option value="calidad">Calidad</option>']; // Añade tus subcategorías aquí
-              subcategorias.innerHTML = opciones.join('');
-          }
-          // Añadir más condiciones para otras categorías y sus subcategorías
+          var categoriaId = this.value;
+          var url = `/video/${categoriaId}`; // Modifica con tu ruta real
+      
+          fetch(url)
+              .then(response => response.json())
+              .then(data => {
+                  var subcategoriaSelect = document.getElementById('subcategoria');
+                  subcategoriaSelect.innerHTML = '<option value="">Seleccione una subcategoría</option>';
+      
+                  data.forEach(subcategoria => {
+                      var option = new Option(subcategoria.nombre, subcategoria.id);
+                      subcategoriaSelect.add(option);
+                  });
+              })
+              .catch(error => console.error('Error:', error));
       });
-
-  </script>
+      </script>
+      
 @endsection
 
 
