@@ -43,22 +43,30 @@
             </div>
             <div class="row">
               <div class="col-md-6 form-group">
-                  <button type="button" class="btn btn-warning btn-block" onclick="document.getElementById('cargaVideo').click();">
+                  <button type="button" class="btn btn-success btn-block" onclick="document.getElementById('cargaVideo').click();">
                       Cargar Video
                   </button>
                   <input type="file" class="form-control" id="cargaVideo" name="cargaVideo" required onchange="vistaPrevia(event)" style="display: none;">
                   <video id="vistaPreviaVideo" width="320" height="240" controls style="display:none;"></video>
               </div>
               <div class="col-md-6 form-group">
-                  <label for="categoria" class="form-label">Categoría del video:</label>
-                  <select class="custom-select" id="categoria" name="categoria" required>
-                      <option value="">Seleccione una categoría</option>
-                      <option value="maquinariayEquipos">Maquinaria y Equipos</option>
-                      <option value="metodos">Métodos</option>
-                      <option value="calidad">Calidad</option>
-                      <option value="induccion">Inducción</option>
-                  </select>
-              </div>
+                <label for="categoria" class="form-label">Categoría del video:</label>
+                <select class="custom-select" id="categoria" name="categoria" required>
+                    <option value="">Seleccione una categoría</option>
+                    <option value="maquinariayEquipos">Maquinaria y Equipos</option>
+                    <option value="metodos">Métodos</option>
+                    <option value="calidad">Calidad</option>
+                    <option value="induccion">Inducción</option>
+                </select>
+            </div>
+            
+            <div class="col-md-6 form-group">
+                <label for="subcategoria" class="form-label">Subcategoría:</label>
+                <select class="custom-select" id="subcategoria" name="subcategoria">
+                    <!-- Las opciones se añadirán dinámicamente aquí -->
+                </select>
+            </div>
+            
             </div>
           
           
@@ -262,6 +270,20 @@
       document.getElementById('tituloVideo').addEventListener('input', function(e) {
           e.target.value = e.target.value.toUpperCase();
       });
+
+  </script>
+  <script>
+    document.getElementById('categoria').addEventListener('change', function() {
+    var categoriaSeleccionada = this.value;
+    var subcategorias = document.getElementById('subcategoria');
+    subcategorias.innerHTML = ''; // Limpiar opciones anteriores
+
+    if(categoriaSeleccionada === 'maquinariayEquipos') {
+        var opciones = ['<option value="partes">Partes</option>', '<option value="herramientas">Herramientas</option>']; // Añade tus subcategorías aquí
+        subcategorias.innerHTML = opciones.join('');
+    }
+    // Añadir más condiciones para otras categorías y sus subcategorías
+});
 
   </script>
 @endsection
