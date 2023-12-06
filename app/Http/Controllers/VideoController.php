@@ -12,7 +12,7 @@ class VideoController extends Controller
 {
     public function video(Request $request)
     {
-        $mensaje = "Hola mundo ";
+        $mensaje = "Sistema para subir contenido multimedia";
         $Videos = Video::with('categoria')->get();
 
         $categorias = Categoria::all(); 
@@ -154,20 +154,33 @@ class VideoController extends Controller
     public function metodos(Request $request)
     {
         $mensaje = "Metodos";
-        $Videos = Video::where('categoria', 'metodos')->get();
-        return  view('video.metodos', compact('mensaje', 'Videos'));  
+        $subcategorias = Subcategoria::where('categoria_id',2)
+            ->with(['videos' => function($query) {
+                $query->where('estatus', 'A');
+        }])->get();
+
+
+        return  view('video.metodos', compact('mensaje', 'subcategorias'));  
     }
     public function calidad(Request $request)
     {
         $mensaje = "Calidad";
-        $Videos = Video::where('categoria', 'calidad')->get();
-        return  view('video.calidad', compact('mensaje', 'Videos'));  
+        $subcategorias = Subcategoria::where('categoria_id',2)
+            ->with(['videos' => function($query) {
+                $query->where('estatus', 'A');
+        }])->get();
+
+        return  view('video.calidad', compact('mensaje', 'subcategorias'));  
     }
     public function induccion(Request $request)
     {
         $mensaje = "Inducción";
-        $Videos = Video::where('categoria', 'induccion')->get();
-        return  view('video.induccion', compact('mensaje', 'Videos'));  
+        $subcategorias = Subcategoria::where('categoria_id',2)
+            ->with(['videos' => function($query) {
+                $query->where('estatus', 'A');
+        }])->get();
+
+        return  view('video.induccion', compact('mensaje', 'subcategorias<h3>{{ $mensaje }}</h3>'));  
     }
 
 }

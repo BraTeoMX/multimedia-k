@@ -1,7 +1,7 @@
 @extends('layouts.app', ['activePage' => 'avanceproduccion', 'titlePage' => __('avanceproduccion')])
 
 @section('content')
-
+<h3 style="text-align: center">{{ $mensaje }}</h3>
   <div class="content">
      {{-- ... dentro de tu vista ... --}}
      @if(session('error'))
@@ -26,7 +26,7 @@
      {{-- ... el resto de tu vista ... --}}
     <div class="container-fluid">
         <div class="card-header card-header-info card-header-icon">
-          <h3>{{ $mensaje }}</h3>
+          
 
           <form method="POST" action="{{ route('registroVideo') }}" enctype="multipart/form-data">
             @csrf
@@ -50,7 +50,7 @@
                   <video id="vistaPreviaVideo" width="320" height="240" controls style="display:none;"></video>
               </div>
               <div class="col-md-6 form-group">
-                <label for="categoria" class="form-label">Categoría del video:</label>
+                
                 <div class="col-md-6 form-group">
                   <label for="categoria" class="form-label">Categoría del video:</label>
                   <select class="custom-select" id="categoria" name="categoria_id" required>
@@ -63,6 +63,7 @@
                 </div>
                 
                 <div class="col-md-6 form-group">
+                  <label for="subcategoria" class="form-label">Subcategoría del video:</label>
                   <select class="custom-select" id="subcategoria" name="subcategoria_id">
                     <option value="">Primero seleccione una categoría</option>
                     <!-- Las opciones se añadirán dinámicamente aquí -->
