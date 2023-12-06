@@ -32,21 +32,39 @@
             @csrf
     
             <div class="form-group">
-                <label for="tituloVideo">Titulo del video:</label>
+               {{-- <label for="tituloVideo" class="form-label-custom">Titulo del video:</label> --}}
+                <h4>Titulo del video:</h4>
                 <input type="text" class="form-control" id="tituloVideo" name="tituloVideo" required>
             </div>
             <div class="form-group">
-              <label for="descripcionVideo">Descripcion del video:</label>
-              <input type="text" class="form-control" id="descripcionVideo" name="descripcionVideo" required>
+             {{-- <label for="descripcionVideo" class="form-label-custom">Descripcion del video:</label> --}}
+              <h4>Descripción del video:</h4>
+              <textarea  type="text" class="form-control" id="descripcionVideo" name="descripcionVideo" required></textarea>
             </div>
-            <div class="form-group">
-              <label for="cargaVideo">Carga de video:</label>
-              <input type="file" class="form-control" id="cargaVideo" name="cargaVideo" required onchange="vistaPrevia(event)">
-              <video id="vistaPreviaVideo" width="320" height="240" controls style="display:none;"></video>
+            <div class="row">
+              <div class="col-md-6 form-group">
+                  <button type="button" class="btn btn-warning btn-block" onclick="document.getElementById('cargaVideo').click();">
+                      Cargar Video
+                  </button>
+                  <input type="file" class="form-control" id="cargaVideo" name="cargaVideo" required onchange="vistaPrevia(event)" style="display: none;">
+                  <video id="vistaPreviaVideo" width="320" height="240" controls style="display:none;"></video>
+              </div>
+              <div class="col-md-6 form-group">
+                  <label for="categoria" class="form-label">Categoría del video:</label>
+                  <select class="custom-select" id="categoria" name="categoria" required>
+                      <option value="">Seleccione una categoría</option>
+                      <option value="maquinariayEquipos">Maquinaria y Equipos</option>
+                      <option value="metodos">Métodos</option>
+                      <option value="calidad">Calidad</option>
+                      <option value="induccion">Inducción</option>
+                  </select>
+              </div>
             </div>
           
+          
+          
     
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary">Registrar / Subir contenido</button>
         </form>
         </div>
 
@@ -111,6 +129,10 @@
     </div>
   </div>
   <style>
+    .form-label-custom {
+      font-size: 1.25rem; /* Ajusta esto a tu preferencia */
+      font-weight: bold; /* Opcional: si quieres que el texto sea en negrita */
+  }
     /* Estilos generales para la tabla */
     table {
         border-collapse: collapse;
@@ -136,7 +158,56 @@
     tr:hover {
         background-color: #f5f5f5; /* Color al pasar el ratón por encima de las filas */
     }
+
+    /*apartado para los diseños de la vista */
+    .custom-select {
+        display: block;
+        width: 100%;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem 1.75rem .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23333" d="M173.898 136.504l114.103 114.102 114.102-114.102c4.686-4.686 12.284-4.686 16.97 0 4.686 4.686 4.686 12.284 0 16.971l-128 128c-4.686 4.686-12.284 4.686-16.971 0l-128-128c-4.686-4.686-4.686-12.284 0-16.971 4.686-4.686 12.284-4.686 16.97 0z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right .75rem center;
+        background-size: .65em auto;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        appearance: none; /* Removes default browser styling */
+    }
+
+    .form-label {
+        display: inline-block;
+        margin-bottom: .5rem;
+    }
+
+    /* Focus and hover states */
+    .custom-select:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+    }
+
+    /* Option to add an arrow icon */
+    .custom-select::after {
+        content: "\25BC";
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+
+    /* When using custom background SVG for the select */
+    .custom-select::-ms-expand {
+        display: none; /* for IE11 */
+    }
+
   </style>
+  
   <script>
     function filterTable() {
         var input, filter, table, tr, td, i, txtValue;

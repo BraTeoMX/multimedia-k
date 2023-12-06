@@ -67,11 +67,18 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/resultadoSorteo', 'App\Http\Controllers\pruebaController@resultadoSorteo')->name('prueba.resultadoSorteo');
 	Route::get('/obtener-ganador', 'App\Http\Controllers\pruebaController@obtenerGanador')->name('obtenerGanador');
 	Route::post('/registroSorteo', 'App\Http\Controllers\PruebaController@registroSorteo')->name('registroSorteo');
-	//seccion para subir archivos 
+	
+	//seccion para pruebas de la seccion multimedia 
 	Route::get('/video', 'App\Http\Controllers\videoController@video')->name('video.video');
 	Route::get('/videoMostrar', 'App\Http\Controllers\videoController@videoMostrar')->name('video.videoMostrar');
 	Route::post('/registroVideo', 'App\Http\Controllers\VideoController@registroVideo')->name('registroVideo');
 	// Ruta para actualizar el estatus de un video 
 	Route::patch('/video/{id}/update-status', 'App\Http\Controllers\VideoController@ActualizarEstatus')->name('video.ActualizarEstatus');
+
+	//apartado para las 4 secciones de multimedia (podrian ser mas)
+	Route::get('/calidad', 'App\Http\Controllers\videoController@calidad')->name('video.calidad');
+	Route::get('/induccion', 'App\Http\Controllers\videoController@induccion')->name('video.induccion');
+	Route::get('/maquinariayEquipos', 'App\Http\Controllers\videoController@maquinariayEquipos')->name('video.maquinariayEquipos');
+	Route::get('/metodos', 'App\Http\Controllers\videoController@metodos')->name('video.metodos');
 });
 

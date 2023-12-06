@@ -11,7 +11,7 @@
           <div class="row">
             {{-- Tarjetas de opciones --}}
             @foreach($tarjetas as $tarjeta)
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <div class="card text-center h-100 shadow">
                         <div class="card-body d-flex flex-column">
                             <i class="{{ $tarjeta['icono'] }} my-3"></i>

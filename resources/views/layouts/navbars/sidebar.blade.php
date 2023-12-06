@@ -18,7 +18,7 @@
       </li>
       {{-- Fin Apartado del boton cafe de la barra de opciones  --}}
       {{-- Inicio Apartado de Menu desplegable --}}
-      <li class="nav-item ">
+     {{-- <li class="nav-item ">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample2" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
           <p>{{ __('Planeación') }}
@@ -44,6 +44,7 @@
           </ul>
         </div>    
       </li>
+      --}}
       {{-- Fin Apartado de Menu desplegable --}}
 
       {{-- Inicio Apartado de Menu desplegable --}}
@@ -86,6 +87,32 @@
         <a class="nav-link" href="{{ route('video.videoMostrar') }}">
           <span class="sidebar-mini">  </span>
           <span class="sidebar-normal">Mostrar videos </span>
+        </a>
+      </li>
+
+      {{--Apartado para las 4 secciones, posiblemente se quiten --}}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('video.maquinariayEquipos') }}">
+          <span class="sidebar-mini">  </span>
+          <span class="sidebar-normal">Maquinaria y Equipos </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('video.metodos') }}">
+          <span class="sidebar-mini">  </span>
+          <span class="sidebar-normal">Metodos </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('video.calidad') }}">
+          <span class="sidebar-mini">  </span>
+          <span class="sidebar-normal">Calidad </span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('video.induccion') }}">
+          <span class="sidebar-mini">  </span>
+          <span class="sidebar-normal">Induccion </span>
         </a>
       </li>
 

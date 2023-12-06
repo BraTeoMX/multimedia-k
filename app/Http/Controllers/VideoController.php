@@ -20,7 +20,8 @@ class VideoController extends Controller
         $request->validate([
             'tituloVideo' => 'required',
             'descripcionVideo' => 'required',
-            'cargaVideo' => 'required|file|mimes:mp4,avi,mov' // Asegúrate de incluir los formatos que necesitas
+            'cargaVideo' => 'required|file|mimes:mp4,avi,mov', // Asegúrate de incluir los formatos que necesitas
+            'categoria' => 'required' 
         ]);
 
         $tituloVideo = $request->input('tituloVideo');
@@ -36,6 +37,7 @@ class VideoController extends Controller
             $video->descripcion = $descripcionVideo;
             $video->estatus = "A";
             $video->link = $videoPath; // Asegúrate de tener una columna en tu base de datos para la ruta del video
+            $video->categoria = $request->input('categoria'); 
             $video->save();
             //dd($request->all());
             return back()->with('success', 'Todos los datos han sido actualizados correctamente.');
@@ -60,6 +62,39 @@ class VideoController extends Controller
         $mensaje = "Hola mundo";
         $Videos = Video::all();
         return  view('video.videoMostrar', compact('mensaje', 'Videos'));  
+    }
+
+
+
+
+
+
+
+    // apartado para las 4 secciones 
+    public function maquinariayEquipos(Request $request)
+    {
+        $mensaje = "maquinaria y Equipos";
+        $Videos = Video::where('categoria', 'maquinariayEquipos')->get();
+        //dd($Videos);
+        return  view('video.maquinariayEquipos', compact('mensaje', 'Videos'));  
+    }
+    public function metodos(Request $request)
+    {
+        $mensaje = "metodos";
+        $Videos = Video::where('categoria', 'metodos')->get();
+        return  view('video.metodos', compact('mensaje', 'Videos'));  
+    }
+    public function calidad(Request $request)
+    {
+        $mensaje = "calidad";
+        $Videos = Video::where('categoria', 'calidad')->get();
+        return  view('video.calidad', compact('mensaje', 'Videos'));  
+    }
+    public function induccion(Request $request)
+    {
+        $mensaje = "induccion";
+        $Videos = Video::where('categoria', 'induccion')->get();
+        return  view('video.induccion', compact('mensaje', 'Videos'));  
     }
 
 }

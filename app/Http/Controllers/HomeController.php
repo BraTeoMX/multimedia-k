@@ -34,26 +34,34 @@ class HomeController extends Controller
         $mensaje = "Hola Mundo"; 
         $tarjetas = [
             [
-                'titulo' => 'Gestión de Videos',
+                'titulo' => 'MAQUINARIA Y EQUIPOS',
                 'descripcion' => 'Añade y gestiona tus videos.',
                 'icono' => 'fas fa-video',
-                'ruta' => 'video.video',
-                'textoBoton' => 'Ir a Videos'
+                'ruta' => 'video.maquinariayEquipos',
+                'textoBoton' => 'Acceder'
             ],
             [
-                'titulo' => 'Visualizar Videos',
+                'titulo' => 'METODOS',
                 'descripcion' => 'Reproduce y explora la lista de videos.',
                 'icono' => 'fas fa-play-circle',
-                'ruta' => 'video.videoMostrar',
-                'textoBoton' => 'Ver Videos'
+                'ruta' => 'video.metodos',
+                'textoBoton' => 'Acceder'
             ],
             [
-                'titulo' => 'Inicio',
+                'titulo' => 'CALIDAD',
                 'descripcion' => 'Parte para visualizar los videos .',
                 'icono' => 'fas fa-video',
-                'ruta' => 'home',
-                'textoBoton' => 'Inicio'
+                'ruta' => 'video.calidad',
+                'textoBoton' => 'Acceder'
             ],
+            [
+                'titulo' => 'INDUCCIONES',
+                'descripcion' => 'Parte para visualizar los videos .',
+                'icono' => 'fas fa-video',
+                'ruta' => 'video.induccion',
+                'textoBoton' => 'Acceder'
+            ],
+            
             // Añade más elementos según sea necesario
         ];
 
