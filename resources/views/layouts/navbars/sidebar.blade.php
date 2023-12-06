@@ -90,7 +90,7 @@
         </a>
       </li>
 
-      {{--Apartado para las 4 secciones, posiblemente se quiten --}}
+      {{--Apartado para las 4 secciones, posiblemente se quiten 
       <li class="nav-item">
         <a class="nav-link" href="{{ route('video.maquinariayEquipos') }}">
           <span class="sidebar-mini">  </span>
@@ -115,7 +115,7 @@
           <span class="sidebar-normal">Induccion </span>
         </a>
       </li>
-
+      --}}
 
     </ul>
   </div>

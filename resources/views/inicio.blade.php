@@ -12,9 +12,9 @@
             {{-- Tarjetas de opciones --}}
             @foreach($tarjetas as $tarjeta)
                 <div class="col-md-6">
-                    <div class="card text-center h-100 shadow">
-                        <div class="card-body d-flex flex-column">
-                            <i class="{{ $tarjeta['icono'] }} my-3"></i>
+                  <div class="card text-center h-100 shadow" style="background-color: {{ $tarjeta['colorFondo'] }};">
+                        <div class="card-body d-flex flex-column card-text-white">
+                            {{--<i class="{{ $tarjeta['icono'] }} my-3"></i>--}}
                             <h5 class="card-title">{{ $tarjeta['titulo'] }}</h5>
                             <p class="card-text">{{ $tarjeta['descripcion'] }}</p>
                             <a href="{{ route($tarjeta['ruta']) }}" class="btn btn-primary mt-auto">{{ $tarjeta['textoBoton'] }}</a>
@@ -66,6 +66,22 @@
     }
 
     /* ... otros estilos ... */
+
+    /* En tu archivo CSS */
+    .card-background-1 {
+        background-color: #f8f9fa; /* Color claro */
+    }
+    .card-background-2 {
+        background-color: #6c757d; /* Color oscuro */
+    }
+    /* ... más clases para diferentes colores de fondo ... */
+
+    .card-text-white h5,
+    .card-text-white p {
+        color: #ffffff;
+    }
+
+
 
   </style>
 @endsection

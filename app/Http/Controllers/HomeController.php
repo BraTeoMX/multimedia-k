@@ -38,28 +38,33 @@ class HomeController extends Controller
                 'descripcion' => 'Añade y gestiona tus videos.',
                 'icono' => 'fas fa-video',
                 'ruta' => 'video.maquinariayEquipos',
-                'textoBoton' => 'Acceder'
+                'textoBoton' => 'Acceder',
+                'colorFondo' => '#2c6975'
+
             ],
             [
                 'titulo' => 'METODOS',
                 'descripcion' => 'Reproduce y explora la lista de videos.',
                 'icono' => 'fas fa-play-circle',
                 'ruta' => 'video.metodos',
-                'textoBoton' => 'Acceder'
+                'textoBoton' => 'Acceder',
+                'colorFondo' => '#0b6e4f'
             ],
             [
                 'titulo' => 'CALIDAD',
                 'descripcion' => 'Parte para visualizar los videos .',
                 'icono' => 'fas fa-video',
                 'ruta' => 'video.calidad',
-                'textoBoton' => 'Acceder'
+                'textoBoton' => 'Acceder',
+                'colorFondo' => '#cb4b16'
             ],
             [
                 'titulo' => 'INDUCCIONES',
                 'descripcion' => 'Parte para visualizar los videos .',
                 'icono' => 'fas fa-video',
                 'ruta' => 'video.induccion',
-                'textoBoton' => 'Acceder'
+                'textoBoton' => 'Acceder',
+                'colorFondo' => '#627c85'
             ],
             
             // Añade más elementos según sea necesario

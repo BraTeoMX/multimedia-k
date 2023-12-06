@@ -10,10 +10,10 @@
           
           <div class="accordion" id="accordionExample">
             @foreach($Videos as $index => $video)
-              <div class="card">
-                <div class="card-header" id="heading{{ $index }}">
+              <div class="card custom-card">
+                <div class="card-header custom-card-header" id="heading{{ $index }}">
                   <h2 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ $index }}" aria-expanded="true" aria-controls="collapse{{ $index }}">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ $index }}" aria-expanded="true" aria-controls="collapse{{ $index }}" style="color: #ffffff !important;">
                       {{ $video->titulo }}
                     </button>
                   </h2>
@@ -22,6 +22,7 @@
                 <div id="collapse{{ $index }}" class="collapse {{ $index == 0 ? 'show' : '' }}" aria-labelledby="heading{{ $index }}" data-parent="#accordionExample">
                   <div class="card-body">
                     {{ $video->descripcion }}
+                    <br>
                     <!-- Botón para abrir el modal con el video -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#videoModal{{ $index }}">
                       Ver Video
@@ -65,6 +66,15 @@
     </div>
   </div>
 
+  <style>
+    .accordion .card .custom-card-header {
+        background-color: #2c6975; /* Color de fondo de la cabecera */
+        color: #ffffff; /* Color del texto de la cabecera */
+    }
+
+
+
+  </style>
 @endsection
 
 
