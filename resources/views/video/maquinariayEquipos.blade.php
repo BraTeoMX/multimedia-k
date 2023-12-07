@@ -1,4 +1,5 @@
 @extends('layouts.app', ['activePage' => 'avanceproduccion', 'titlePage' => __('avanceproduccion')])
+<link href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
 
 @section('content')
 <h2 id="texto-escritura" class="estilo-mensaje"></h2>
@@ -79,12 +80,30 @@
       background-color: #2c6975; /* Color de fondo de la cabecera */
       color: #ffffff; /* Color del texto de la cabecera */
   }
+  .custom-card {
+    box-shadow: 0 4px 8px 0 #2c6975; /* Ejemplo de sombra difuminada */
+    border: 1px solid #ddd; /* Opcional: añade un borde ligero */
+    margin-bottom: 10px; /* Espacio entre los elementos del acordeón */
+}
+
 
   .estilo-mensaje {
         text-align: center;
         font-weight: bold;
         color: black;
         font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Estilos nuevos para los acordeones */
+    .accordion .card-header button {
+        font-family: 'Roboto';
+        font-size: 18px;
+        color: #ffffff;
+    }
+
+    .accordion .card-body {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
     }
 </style>
 
