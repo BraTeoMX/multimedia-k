@@ -1,7 +1,7 @@
 @extends('layouts.app', ['activePage' => 'avanceproduccion', 'titlePage' => __('avanceproduccion')])
 
 @section('content')
-<h2 style="text-align: center">{{ $mensaje }}</h2>
+<h2 id="texto-escritura" class="estilo-mensaje"></h2>
 <div class="content">
   <div class="container-fluid">
     <div class="card-header card-header-info card-header-icon">
@@ -79,5 +79,34 @@
       background-color: #2c6975; /* Color de fondo de la cabecera */
       color: #ffffff; /* Color del texto de la cabecera */
   }
+
+  .estilo-mensaje {
+        text-align: center;
+        font-weight: bold;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 </style>
+
+<script>
+  const elementoTexto = document.getElementById('texto-escritura');
+  const texto = 'Maquinaria y Equipos 💻';
+  let indiceActual = 0;
+  let tiempoEspera = 70; // Tiempo entre letras en milisegundos
+
+  function escribirTexto() {
+      if (indiceActual < texto.length) {
+          elementoTexto.innerHTML += texto[indiceActual];
+          indiceActual++;
+          if (texto[indiceActual - 1] === ' ' || texto[indiceActual - 1] === '💻') {
+              // Aumentar el tiempo de espera después de un espacio o al final
+              setTimeout(escribirTexto, 650);
+          } else {
+              setTimeout(escribirTexto, tiempoEspera);
+          }
+      }
+  }
+
+  escribirTexto(); // Iniciar la función al cargar la página
+</script>
 @endsection

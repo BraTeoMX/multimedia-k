@@ -31,7 +31,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $mensaje = "Hola Mundo"; 
+      
         $tarjetas = [
             [
                 'titulo' => 'MAQUINARIA Y EQUIPOS',
@@ -45,7 +45,6 @@ class HomeController extends Controller
             [
                 'titulo' => 'METODOS',
                 'descripcion' => 'Reproduce y explora la lista de videos.',
-                'icono' => 'fas fa-play-circle',
                 'ruta' => 'video.metodos',
                 'textoBoton' => 'Acceder',
                 'colorFondo' => '#0b6e4f'
@@ -53,7 +52,6 @@ class HomeController extends Controller
             [
                 'titulo' => 'CALIDAD',
                 'descripcion' => 'Parte para visualizar los videos .',
-                'icono' => 'fas fa-video',
                 'ruta' => 'video.calidad',
                 'textoBoton' => 'Acceder',
                 'colorFondo' => '#cb4b16'
@@ -61,7 +59,6 @@ class HomeController extends Controller
             [
                 'titulo' => 'INDUCCIONES',
                 'descripcion' => 'Parte para visualizar los videos .',
-                'icono' => 'fas fa-video',
                 'ruta' => 'video.induccion',
                 'textoBoton' => 'Acceder',
                 'colorFondo' => '#627c85'
@@ -70,7 +67,7 @@ class HomeController extends Controller
             // Añade más elementos según sea necesario
         ];
 
-        return view('inicio', compact('mensaje', 'tarjetas'));
+        return view('inicio', compact('tarjetas'));
     }
 
 

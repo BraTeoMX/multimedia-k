@@ -1,7 +1,7 @@
 @extends('layouts.app', ['activePage' => 'avanceproduccion', 'titlePage' => __('avanceproduccion')])
 
 @section('content')
-<h2 style="text-align: center">{{ $mensaje }}</h2>
+<h2 class="estilo-mensaje">{{ $mensaje }} 🎲</h2>
 <div class="content">
   <div class="container-fluid">
     <div class="card-header card-header-info card-header-icon">
@@ -79,5 +79,11 @@
       background-color: #cb4b16; /* Color de fondo de la cabecera */
       color: #ffffff; /* Color del texto de la cabecera */
   }
+  .estilo-mensaje {
+        text-align: center;
+        font-weight: bold;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 </style>
 @endsection

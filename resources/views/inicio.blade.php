@@ -6,13 +6,13 @@
   
     <div class="container-fluid">
         <div class="card-header card-header-info card-header-icon">
-          <h3>{{ $mensaje }}</h3>
+          <h2 id="texto-escritura" class="estilo-mensaje"></h2>
           
           <div class="row">
             {{-- Tarjetas de opciones --}}
             @foreach($tarjetas as $tarjeta)
-                <div class="col-md-6">
-                  <div class="card text-center h-100 shadow" style="background-color: {{ $tarjeta['colorFondo'] }};">
+                <div class="col-md-6 fade-in"> {{-- Añadir la clase fade-in aquí --}}
+                    <div class="card text-center h-100 shadow" style="background-color: {{ $tarjeta['colorFondo'] }};">
                         <div class="card-body d-flex flex-column card-text-white">
                             {{--<i class="{{ $tarjeta['icono'] }} my-3"></i>--}}
                             <h5 class="card-title">{{ $tarjeta['titulo'] }}</h5>
@@ -22,6 +22,7 @@
                     </div>
                 </div>
             @endforeach
+            
             <!-- Tarjetas vacías -->
             @for($i = 0; $i < 2; $i++)
             <div class="col-md-3">
@@ -41,19 +42,47 @@
         
     </div>
   </div>
+  <style>
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px); /* Puedes ajustar este valor si lo necesitas */
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
+
+    .fade-in {
+        margin-bottom: 20px; /* Ajusta este valor según tus necesidades */
+        animation: fadeIn 2s ease-out forwards;
+    }
+
+    @media (max-width: 768px) { /* Para dispositivos móviles */
+        .fade-in {
+            margin-bottom: 10px; /* Un margen más pequeño en dispositivos móviles */
+        }
+    }
+
+  </style>
   <style>
     .card {
         transition: transform 0.3s ease-in-out;
+        margin-bottom: 100px; 
+    }
+    
+    @media (max-width: 768px) { /* Para dispositivos móviles */
+        .card {
+            margin-bottom: 10px; /* Un margen más pequeño en dispositivos móviles */
+        }
     }
 
     .card:hover {
         transform: translateY(-20px); /* eleva la tarjeta un poco cuando el usuario pasa el ratón por encima */
     }
 
-    .card-icon {
-        font-size: 3rem; /* ajusta el tamaño del icono según sea necesario */
-    }
 
     .btn-primary {
         background-color: #0056b3; /* color de tu marca, por ejemplo */
@@ -81,9 +110,47 @@
         color: #ffffff;
     }
 
+    .card-title {
+        font-size: 30px; /* Ajusta este valor según tus necesidades */
+    }
+
+    .card-text {
+        font-size: 18px; /* Ajusta este valor según tus necesidades */
+    }
+
+    .estilo-mensaje {
+        text-align: center;
+        font-weight: bold;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
 
   </style>
+
+<script>
+    const elementoTexto = document.getElementById('texto-escritura');
+    const texto = 'Bienvenidos a Intimark 🐱‍👓';
+    let indiceActual = 0;
+    let tiempoEspera = 70; // Tiempo entre letras en milisegundos
+
+    function escribirTexto() {
+        if (indiceActual < texto.length) {
+            elementoTexto.innerHTML += texto[indiceActual];
+            indiceActual++;
+            if (texto[indiceActual - 1] === ' ' || texto[indiceActual - 1] === '🐱‍👓') {
+                // Aumentar el tiempo de espera después de un espacio o al final
+                setTimeout(escribirTexto, 650);
+            } else {
+                setTimeout(escribirTexto, tiempoEspera);
+            }
+        }
+    }
+
+    escribirTexto(); // Iniciar la función al cargar la página
+</script>
+
+
 @endsection
 
 

@@ -139,7 +139,7 @@ class VideoController extends Controller
     // apartado para las 4 secciones 
     public function maquinariayEquipos(Request $request)
     {
-        $mensaje = "Maquinaria y Equipos";
+        $mensaje = "Maquinaria y Equipos ";
 
         $subcategorias = Subcategoria::where('categoria_id',1)
             ->with(['videos' => function($query) {
@@ -153,14 +153,13 @@ class VideoController extends Controller
 
     public function metodos(Request $request)
     {
-        $mensaje = "Metodos";
         $subcategorias = Subcategoria::where('categoria_id',2)
             ->with(['videos' => function($query) {
                 $query->where('estatus', 'A');
         }])->get();
 
 
-        return  view('video.metodos', compact('mensaje', 'subcategorias'));  
+        return  view('video.metodos', compact('subcategorias'));  
     }
     public function calidad(Request $request)
     {
@@ -180,7 +179,7 @@ class VideoController extends Controller
                 $query->where('estatus', 'A');
         }])->get();
 
-        return  view('video.induccion', compact('mensaje', 'subcategorias<h3>{{ $mensaje }}</h3>'));  
+        return  view('video.induccion', compact('mensaje', 'subcategorias'));  
     }
 
 }

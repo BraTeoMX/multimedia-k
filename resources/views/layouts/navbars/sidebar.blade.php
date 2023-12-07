@@ -48,6 +48,7 @@
       {{-- Fin Apartado de Menu desplegable --}}
 
       {{-- Inicio Apartado de Menu desplegable --}}
+      {{--
       <li class="nav-item ">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample1" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
@@ -74,6 +75,7 @@
           </ul>
         </div>    
       </li>
+      --}}
       {{-- Fin Apartado de Menu desplegable --}}
 
       <li class="nav-item">
@@ -84,18 +86,18 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('video.videoMostrar') }}">
-          <span class="sidebar-mini">  </span>
-          <span class="sidebar-normal">Mostrar videos </span>
-        </a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="{{ route('video.altaCategoriaSub') }}">
           <span class="sidebar-mini">  </span>
           <span class="sidebar-normal">Altas  </span>
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('video.videoMostrar') }}">
+          <span class="sidebar-mini">  </span>
+          <span class="sidebar-normal">Mostrar videos </span>
+        </a>
+      </li>
       {{--Apartado para las 4 secciones, posiblemente se quiten 
       <li class="nav-item">
         <a class="nav-link" href="{{ route('video.maquinariayEquipos') }}">
