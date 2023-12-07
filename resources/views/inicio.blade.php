@@ -118,6 +118,12 @@
         font-size: 18px; /* Ajusta este valor según tus necesidades */
     }
 
+    .card-body .btn-primary, 
+    .card-body .btn-secondary {
+        padding: 20px 20px; /* Aumenta el padding para hacer el botón más grande */
+        font-size: 25px; /* Ajusta el tamaño del texto dentro del botón */
+    }
+
     .estilo-mensaje {
         text-align: center;
         font-weight: bold;
