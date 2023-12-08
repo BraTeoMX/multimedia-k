@@ -2,46 +2,115 @@
 
 @section('content')
 
-  <div class="content">
-  
+<div class="content">
     <div class="container-fluid">
         <div class="card-header card-header-info card-header-icon">
-          <h2 id="texto-escritura" class="estilo-mensaje"></h2>
-          
-          <div class="row">
-            {{-- Tarjetas de opciones --}}
-            @foreach($tarjetas as $tarjeta)
-                <div class="col-md-6 fade-in"> {{-- Añadir la clase fade-in aquí --}}
-                    <div class="card text-center h-100 shadow" style="background-color: {{ $tarjeta['colorFondo'] }};">
-                        <div class="card-body d-flex flex-column card-text-white">
-                            {{--<i class="{{ $tarjeta['icono'] }} my-3"></i>--}}
-                            <h5 class="card-title">{{ $tarjeta['titulo'] }}</h5>
-                            <p class="card-text">{{ $tarjeta['descripcion'] }}</p>
-                            <a href="{{ route($tarjeta['ruta']) }}" class="btn btn-primary mt-auto">{{ $tarjeta['textoBoton'] }}</a>
+            <h2 id="texto-escritura" class="estilo-mensaje"></h2>
+
+            <div class="row">
+                {{-- Iterar sobre las categorías --}}
+                @php
+                    $colores = ['#558B2F', '#1B5E20', '#B71C1C', '#FF6F00', '#4A148C', '#3E2723', '#01579B', '#1A237E', '#004D40', '#BF360C', 
+                                '#880E4F', '#006064', '#F57F17', '#263238', '#2E7D32', '#D84315', '#4E342E', '#827717', '#558B2F', '#0D47A1']; // Lista de colores sólidos
+                @endphp
+                @foreach($categorias as $categoria)
+                    @php
+                    $colorIndex = abs(crc32($categoria->nombre)) % count($colores);
+                    $color = $colores[$colorIndex];
+                    @endphp
+                    <div class="col-md-6 fade-in">
+                        <div class="card text-center h-100 shadow" style="background-color: {{ $color }}">
+                            <div class="card-body d-flex flex-column card-text-white">
+                                <h5 class="card-title">{{ $categoria->nombre }}</h5>
+                                <p class="card-text">Descripción o más detalles de la categoría</p>
+                                <button type="button" class="btn btn-danger mt-auto" data-toggle="modal" data-target="#categoriaModal-{{ $categoria->id }}">Administrar</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
-            
-            <!-- Tarjetas vacías -->
-            @for($i = 0; $i < 2; $i++)
-            <div class="col-md-3">
-                <div class="card text-center h-100 shadow">
-                    <div class="card-body d-flex flex-column">
-                        <i class="card-icon my-3 fas fa-folder-plus"></i> {{-- Icono de ejemplo --}}
-                        <h5 class="card-title">Próximamente</h5>
-                        <p class="card-text">Más funcionalidades en desarrollo.</p>
-                        <a href="#" class="btn btn-secondary mt-auto disabled">Próximamente</a>
-                    </div>
-                </div>
-            </div>
-            @endfor
-          </div>
 
+                    <!-- Modal para cada categoría -->
+                    <div class="modal fade" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-fullscreen-custom" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">{{ $categoria->nombre }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="accordion" id="accordionCategoria-{{ $categoria->id }}">
+                                        @foreach($categoria->subcategorias as $subcategoria)
+                                            <div class="card custom-card">
+                                                <div class="card-header custom-card-header" id="headingSubcategoria{{ $subcategoria->id }}">
+                                                    <h2 class="mb-0" style="background-color: {{ $color }}">
+                                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseSubcategoria{{ $subcategoria->id }}" aria-expanded="true" aria-controls="collapseSubcategoria{{ $subcategoria->id }}" style="color: #ffffff !important;">
+                                                            {{ $subcategoria->nombre }}
+                                                        </button>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapseSubcategoria{{ $subcategoria->id }}" class="collapse" aria-labelledby="headingSubcategoria{{ $subcategoria->id }}" data-parent="#accordionCategoria-{{ $categoria->id }}">
+                                                    <div class="card-body">
+                                                        @foreach($subcategoria->videos as $video)
+                                                            <!-- Aquí va la estructura del video como en tu vista de 'Maquinaria y Equipos' -->
+                                                            <div class="card custom-card">
+                                                                <!-- Encabezado del Video -->
+                                                                <div class="card-header custom-card-header" id="headingVideo{{ $video->id }}">
+                                                                <h2 class="mb-0" style="background-color: {{ $color }}">
+                                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseVideo{{ $video->id }}" aria-expanded="true" aria-controls="collapseVideo{{ $video->id }}" style="color: #ffffff !important;">
+                                                                    {{ $video->titulo }}
+                                                                    </button>
+                                                                </h2>
+                                                                </div>
+
+                                                                <!-- Contenido del Video -->
+                                                                <div id="collapseVideo{{ $video->id }}" class="collapse" aria-labelledby="headingVideo{{ $video->id }}" data-parent="#collapseSubcategoria{{ $subcategoria->id }}">
+                                                                <div class="card-body">
+                                                                    {{ $video->descripcion }}
+                                                                    <br>
+                                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#videoModal{{ $video->id }}">
+                                                                    Ver Video
+                                                                    </button>
+
+                                                                    <!-- Modal -->
+                                                                    <div class="modal fade" id="videoModal{{ $video->id }}" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel{{ $video->id }}" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-lg" role="document">
+                                                                        <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="videoModalLabel{{ $video->id }}">{{ $video->titulo }}</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <video width="100%" controls>
+                                                                            <source src="{{ Storage::url($video->link) }}" type="video/mp4">
+                                                                            Tu navegador no admite la etiqueta de video.
+                                                                            </video>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
-        
     </div>
-  </div>
+</div>
+
+
   <style>
     @keyframes fadeIn {
         from {
@@ -68,6 +137,23 @@
 
   </style>
   <style>
+
+    .modal-fullscreen-custom {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        margin: 0;
+    }
+
+    .modal-fullscreen-custom .modal-content {
+        height: 100%;
+        border: 0;
+        border-radius: 0;
+    }
+
+
+
+
     .card {
         transition: transform 0.3s ease-in-out;
         margin-bottom: 100px; 

@@ -6,6 +6,9 @@ use App\Formato_P07;
 
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
+use App\Models\Video;
+use App\Models\Categoria;
+use App\Models\Subcategoria;
 use Illuminate\Support\Carbon;
 
 
@@ -31,43 +34,11 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-      
-        $tarjetas = [
-            [
-                'titulo' => 'MAQUINARIA Y EQUIPOS',
-                'descripcion' => 'Añade y gestiona tus videos.',
-                'icono' => 'fas fa-video',
-                'ruta' => 'video.maquinariayEquipos',
-                'textoBoton' => 'Acceder',
-                'colorFondo' => '#2c6975'
+        $categorias = Categoria::with(['subcategorias.videos' => function ($query) {
+            $query->where('estatus', 'A'); // Asumiendo que 'estatus' es un campo en tu modelo Video
+        }])->get();
 
-            ],
-            [
-                'titulo' => 'METODOS',
-                'descripcion' => 'Reproduce y explora la lista de videos.',
-                'ruta' => 'video.metodos',
-                'textoBoton' => 'Acceder',
-                'colorFondo' => '#0b6e4f'
-            ],
-            [
-                'titulo' => 'CALIDAD',
-                'descripcion' => 'Parte para visualizar los videos .',
-                'ruta' => 'video.calidad',
-                'textoBoton' => 'Acceder',
-                'colorFondo' => '#cb4b16'
-            ],
-            [
-                'titulo' => 'INDUCCIONES',
-                'descripcion' => 'Parte para visualizar los videos .',
-                'ruta' => 'video.induccion',
-                'textoBoton' => 'Acceder',
-                'colorFondo' => '#627c85'
-            ],
-            
-            // Añade más elementos según sea necesario
-        ];
-
-        return view('inicio', compact('tarjetas'));
+        return view('inicio', compact('categorias'));
     }
 
 
