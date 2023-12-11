@@ -79,7 +79,7 @@
   .accordion .card .custom-card-header {
       background-color: #2c6975; /* Color de fondo de la cabecera */
       color: #ffffff; /* Color del texto de la cabecera */
-  }
+  } 
   .custom-card {
     box-shadow: 0 4px 8px 0 #2c6975; /* Ejemplo de sombra difuminada */
     border: 1px solid #ddd; /* Opcional: añade un borde ligero */

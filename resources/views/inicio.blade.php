@@ -10,13 +10,34 @@
             <div class="row">
                 {{-- Iterar sobre las categorías --}}
                 @php
-                    $colores = ['#558B2F', '#1B5E20', '#B71C1C', '#FF6F00', '#4A148C', '#3E2723', '#01579B', '#1A237E', '#004D40', '#BF360C', 
-                                '#880E4F', '#006064', '#F57F17', '#263238', '#2E7D32', '#D84315', '#4E342E', '#827717', '#558B2F', '#0D47A1']; // Lista de colores sólidos
+                        $colores = [
+                            '#558B2F', // Verde oliva oscuro 
+                            '#1B5E20', // Verde bosque
+                            '#4E342E', // Marrón oscuro
+                            '#FF6F00', // Naranja brillante
+                            '#4A148C', // Púrpura oscuro
+                            '#880E4F', // Marrón muy oscuro, casi negro
+                            '#1A237E', // Azul oscuro, azul marino
+                            '#01579B', // Azul más oscuro, azul medianoche
+                            '#004D40', // Verde azulado oscuro, color petróleo
+                            '#BF360C', // Rojo anaranjado oscuro, terracota
+                            '#0D47A1', // Borgoña o vino oscuro
+                            '#006064', // Cian oscuro, azul verdoso
+                            '#F57F17', // Naranja amarillento, calabaza
+                            '#263238', // Gris azulado muy oscuro, casi negro
+                            '#2E7D32', // Verde esmeralda
+                            '#D84315', // Naranja quemado
+                            '#9E9D24', // Verde amarillento, como oliva clara
+                            '#827717', // Verde oliva oscuro
+                            '#6A1B9A', // Púrpura más vibrante
+                            '#3E2723'  // Azul cobalto, azul intenso y brillante
+                        ];
+                        $index = 0;
                 @endphp
                 @foreach($categorias as $categoria)
                     @php
-                    $colorIndex = abs(crc32($categoria->nombre)) % count($colores);
-                    $color = $colores[$colorIndex];
+                        $color = $colores[$index % count($colores)];
+                        $index++;
                     @endphp
                     <div class="col-md-6 fade-in">
                         <div class="card text-center h-100 shadow" style="background-color: {{ $color }}">
@@ -176,18 +197,6 @@
     }
 
 
-    .btn-primary {
-        background-color: #0056b3; /* color de tu marca, por ejemplo */
-        border-color: #0056b3;
-    }
-
-    .btn-primary:hover {
-        background-color: #003d82; /* un tono más oscuro para el hover */
-        border-color: #003d82;
-    }
-
-    /* ... otros estilos ... */
-
     /* En tu archivo CSS */
     .card-background-1 {
         background-color: #f8f9fa; /* Color claro */
@@ -225,6 +234,30 @@
 
 
   </style>
+
+<style>
+    /* Estilos para el acordeón */
+    .custom-card .card-header {
+        padding: 5px 15px; /* Reduce el relleno del encabezado del acordeón */
+
+    }
+
+    .custom-card .card-body {
+        padding: 10px; /* Reduce el relleno del cuerpo del acordeón */
+    }
+
+    .custom-card {
+        margin-bottom: 5px; /* Reduce el margen entre elementos del acordeón */
+    }
+
+    /* Ajustar el efecto de hover para los acordeones */
+    .custom-card:hover {
+        transform: translateY(-5px); /* Reduce la cantidad de desplazamiento */
+    }
+    
+
+</style>
+
 
 <script>
     $(document).ready(function() {
