@@ -29,7 +29,7 @@
                     </div>
 
                     <!-- Modal para cada categoría -->
-                    <div class="modal fade" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog">
+                    <div class="modal fade main-modal" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog">
                         <div class="modal-dialog modal-fullscreen-custom" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -68,28 +68,16 @@
                                                                 <div class="card-body">
                                                                     {{ $video->descripcion }}
                                                                     <br>
-                                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#videoModal{{ $video->id }}">
-                                                                    Ver Video
+                                                                    <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#videoContainer{{ $video->id }}">
+                                                                        Ver Video
                                                                     </button>
 
-                                                                    <!-- Modal -->
-                                                                    <div class="modal fade" id="videoModal{{ $video->id }}" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel{{ $video->id }}" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-lg" role="document">
-                                                                        <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="videoModalLabel{{ $video->id }}">{{ $video->titulo }}</h5>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <video width="100%" controls>
+                                                                    <!-- Div Colapsable para el Video -->
+                                                                    <div id="videoContainer{{ $video->id }}" class="collapse video-container">
+                                                                        <video width="100%" controls>
                                                                             <source src="{{ Storage::url($video->link) }}" type="video/mp4">
                                                                             Tu navegador no admite la etiqueta de video.
-                                                                            </video>
-                                                                        </div>
-                                                                        </div>
-                                                                    </div>
+                                                                        </video>
                                                                     </div>
                                                                 </div>
                                                                 </div>
@@ -138,6 +126,19 @@
   </style>
   <style>
 
+    .video-container {
+        margin-top: 15px;
+        max-width: 640px; /* Ajusta el ancho máximo según tus necesidades */
+        max-height: 360px; /* Ajusta la altura máxima según tus necesidades */
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden; /* Esto asegura que el video no sobrepase los límites del contenedor */
+    }
+
+    .video-container video {
+        width: 100%; /* Hace que el video se ajuste al ancho del contenedor */
+        height: auto; /* Mantiene la proporción del video */
+    }
     .modal-fullscreen-custom {
         width: 100%;
         height: 100%;
@@ -149,7 +150,14 @@
         height: 100%;
         border: 0;
         border-radius: 0;
+        overflow-y: auto; /* Habilitar desplazamiento vertical */
     }
+
+    .modal-body {
+        overflow-y: auto; /* Habilitar desplazamiento vertical */
+        max-height: calc(100vh - 120px); /* Ajustar según sea necesario */
+    }
+
 
 
 
@@ -221,27 +229,20 @@
   </style>
 
 <script>
-    const elementoTexto = document.getElementById('texto-escritura');
-    const texto = 'Bienvenidos a Intimark 🐱‍👓';
-    let indiceActual = 0;
-    let tiempoEspera = 70; // Tiempo entre letras en milisegundos
-
-    function escribirTexto() {
-        if (indiceActual < texto.length) {
-            elementoTexto.innerHTML += texto[indiceActual];
-            indiceActual++;
-            if (texto[indiceActual - 1] === ' ' || texto[indiceActual - 1] === '🐱‍👓') {
-                // Aumentar el tiempo de espera después de un espacio o al final
-                setTimeout(escribirTexto, 650);
-            } else {
-                setTimeout(escribirTexto, tiempoEspera);
-            }
-        }
-    }
-
-    escribirTexto(); // Iniciar la función al cargar la página
-</script>
-
+    $(document).ready(function() {
+        // ... tu función escribirTexto() y otras funciones ...
+    
+        // Abrir modal principal
+        $(document).on('click', '[data-toggle="modal"]', function(event) {
+            event.stopPropagation();
+            var target = $(this).data('target');
+            $(target).modal('show');
+        });
+    
+        // No necesitas el manejo de modal anidado ya que se eliminó esa funcionalidad
+    });
+    </script>
+        
 
 @endsection
 
