@@ -74,7 +74,7 @@
 
                                                                     <!-- Div Colapsable para el Video -->
                                                                     <div id="videoContainer{{ $video->id }}" class="collapse video-container">
-                                                                        <video width="100%" controls>
+                                                                        <video id="video{{ $video->id }}" width="100%" controls>
                                                                             <source src="{{ Storage::url($video->link) }}" type="video/mp4">
                                                                             Tu navegador no admite la etiqueta de video.
                                                                         </video>
@@ -139,27 +139,25 @@
         width: 100%; /* Hace que el video se ajuste al ancho del contenedor */
         height: auto; /* Mantiene la proporción del video */
     }
+    
+    /*estilos y diseños para el modal*/
     .modal-fullscreen-custom {
         width: 100%;
-        height: 100%;
+        height: 100vh; /* Asegúrate de que el modal no sea más alto que la ventana del navegador */
         max-width: none;
         margin: 0;
+        overflow: hidden; /* Evita el desplazamiento en el nivel del modal */
     }
 
     .modal-fullscreen-custom .modal-content {
-        height: 100%;
-        border: 0;
-        border-radius: 0;
-        overflow-y: auto; /* Habilitar desplazamiento vertical */
+        height: 100%; /* El contenido del modal también ocupa toda la altura */
+
     }
 
     .modal-body {
-        overflow-y: auto; /* Habilitar desplazamiento vertical */
-        max-height: calc(100vh - 120px); /* Ajustar según sea necesario */
+        overflow-y: auto; /* Habilitar desplazamiento vertical solo en modal-body */
+        max-height: calc(100vh - 120px); /* Altura máxima ajustada para permitir la barra de título y algo de margen */
     }
-
-
-
 
 
     .card {
@@ -242,6 +240,27 @@
         // No necesitas el manejo de modal anidado ya que se eliminó esa funcionalidad
     });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Detener videos al abrir una nueva sección del acordeón
+        $('.collapse').on('show.bs.collapse', function() {
+            $('.video-container video').each(function() {
+                this.pause();
+                this.currentTime = 0;
+            });
+        });
+    
+        // Detener videos al cerrar el modal
+        $('.modal').on('hidden.bs.modal', function() {
+            $(this).find('.video-container video').each(function() {
+                this.pause();
+                this.currentTime = 0;
+            });
+        });
+    });
+    </script>
+    
         
 
 @endsection
