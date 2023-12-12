@@ -15,7 +15,7 @@ class VideoController extends Controller
         $mensaje = "Sistema para subir contenido multimedia";
         $Videos = Video::with('categoria')->get();
 
-        $categorias = Categoria::all(); 
+        $categorias = Categoria::where('estatus', 'A')->get();
        
         //dd($Videos->first(), $Videos->first()->categoria);
 
@@ -25,10 +25,13 @@ class VideoController extends Controller
     public function altaCategoriaSub(Request $request)
     {
         $mensaje = "Hola mundo ";
+        $categoriaMostrar = Categoria::where('estatus', 'A')->get();
         $categorias = Categoria::all(); // Obtener todas las categorías
 
+        $subcategorias = Subcategoria::all(); // Obtener todas las categorías
 
-        return  view('video.altaCategoriaSub', compact('mensaje', 'categorias')); 
+
+        return  view('video.altaCategoriaSub', compact('mensaje', 'categorias', 'subcategorias', 'categoriaMostrar')); 
     }
 
     public function storeCategoria(Request $request)
@@ -41,6 +44,7 @@ class VideoController extends Controller
         // Crear una nueva categoría
         $categoria = new Categoria();
         $categoria->nombre = strtoupper($request->nombre_categoria);
+        $categoria->estatus= 'A';
         $categoria->save();
 
         // Redireccionar con un mensaje de éxito
@@ -60,6 +64,7 @@ class VideoController extends Controller
         $subcategoria = new Subcategoria();
         $subcategoria->categoria_id = $request->categoria_id;
         $subcategoria->nombre = strtoupper($request->nombre_subcategoria);
+        $subcategoria->estatus= 'A';
         $subcategoria->save();
 
         // Redireccionar con un mensaje de éxito
@@ -118,6 +123,26 @@ class VideoController extends Controller
         $video->save();
     
         $mensaje = $video->estatus == 'A' ? 'Video dado de alta.' : 'Video dado de baja.';
+        
+        return back()->with('status', $mensaje);
+    }
+
+    public function ActualizarEstatusCategoria(Request $request, $id) {
+        $video = Categoria::findOrFail($id);
+        $video->estatus = $request->input('estatus', 'A'); // Asumiendo 'A' como valor por defecto para "Dar de Alta"
+        $video->save();
+    
+        $mensaje = $video->estatus == 'A' ? 'Categoria dada de alta.' : 'Cateogria dado de baja.';
+        
+        return back()->with('status', $mensaje);
+    }
+
+    public function ActualizarEstatusSubCategoria(Request $request, $id) {
+        $video = Subcategoria::findOrFail($id);
+        $video->estatus = $request->input('estatus', 'A'); // Asumiendo 'A' como valor por defecto para "Dar de Alta"
+        $video->save();
+    
+        $mensaje = $video->estatus == 'A' ? 'SubCategoria dada de alta.' : 'SubCateogria dado de baja.';
         
         return back()->with('status', $mensaje);
     }

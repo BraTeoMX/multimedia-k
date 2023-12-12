@@ -65,7 +65,7 @@
                                             <div class="card custom-card">
                                                 <div class="card-header custom-card-header" id="headingSubcategoria{{ $subcategoria->id }}">
                                                     <h2 class="mb-0" style="background-color: {{ $color }}">
-                                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseSubcategoria{{ $subcategoria->id }}" aria-expanded="true" aria-controls="collapseSubcategoria{{ $subcategoria->id }}" style="color: #ffffff !important;">
+                                                        <button class="btn btn-link  btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseSubcategoria{{ $subcategoria->id }}" aria-expanded="true" aria-controls="collapseSubcategoria{{ $subcategoria->id }}" style="color: #ffffff !important;">
                                                             {{ $subcategoria->nombre }}
                                                         </button>
                                                     </h2>
@@ -258,6 +258,27 @@
 
 </style>
 
+<script>
+    const elementoTexto = document.getElementById('texto-escritura');
+    const texto = 'Centro de Desarrollo Habilidades Intimark 👋';
+    let indiceActual = 0;
+    let tiempoEspera = 70; // Tiempo entre letras en milisegundos
+
+    function escribirTexto() {
+        if (indiceActual < texto.length) {
+            elementoTexto.innerHTML += texto[indiceActual];
+            indiceActual++;
+            if (texto[indiceActual - 1] === ' ' || texto[indiceActual - 1] === '👋') {
+                // Aumentar el tiempo de espera después de un espacio o al final
+                setTimeout(escribirTexto, 650);
+            } else {
+                setTimeout(escribirTexto, tiempoEspera);
+            }
+        }
+    }
+
+    escribirTexto(); // Iniciar la función al cargar la página
+</script>
 
 <script>
     $(document).ready(function() {

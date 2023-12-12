@@ -34,9 +34,13 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $categorias = Categoria::with(['subcategorias.videos' => function ($query) {
-            $query->where('estatus', 'A'); // Asumiendo que 'estatus' es un campo en tu modelo Video
+        $categorias = Categoria::where('estatus', 'A') // Filtra las categorías con estatus 'A'
+        ->with(['subcategorias' => function ($query) {
+            $query->where('estatus', 'A'); // Filtra las subcategorías con estatus 'A'
+        }, 'subcategorias.videos' => function ($query) {
+            $query->where('estatus', 'A'); // Filtra los videos con estatus 'A'
         }])->get();
+
 
         return view('inicio', compact('categorias'));
     }

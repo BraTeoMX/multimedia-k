@@ -74,6 +74,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/registroVideo', 'App\Http\Controllers\VideoController@registroVideo')->name('registroVideo');
 	// Ruta para actualizar el estatus de un video 
 	Route::patch('/video/{id}/update-status', 'App\Http\Controllers\VideoController@ActualizarEstatus')->name('video.ActualizarEstatus');
+	Route::patch('/video/{id}/update-status-categoria', 'App\Http\Controllers\VideoController@ActualizarEstatusCategoria')->name('categoria.ActualizarEstatusCategoria');
+	Route::patch('/video/{id}/update-status-subcategoria', 'App\Http\Controllers\VideoController@ActualizarEstatusSubCategoria')->name('categoria.ActualizarEstatusSubCategoria');
 
 	//apartado para las 4 secciones de multimedia (podrian ser mas)
 	Route::get('/calidad', 'App\Http\Controllers\videoController@calidad')->name('video.calidad');
