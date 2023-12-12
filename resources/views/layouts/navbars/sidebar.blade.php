@@ -77,27 +77,22 @@
       </li>
       --}}
       {{-- Fin Apartado de Menu desplegable --}}
+      @if(auth()->user() && auth()->user()->puesto == 'Administrador')
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('video.video') }}">
+            <span class="sidebar-mini">  </span>
+            <span class="sidebar-normal">Carga videos </span>
+          </a>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('video.video') }}">
-          <span class="sidebar-mini">  </span>
-          <span class="sidebar-normal">Carga videos </span>
-        </a>
-      </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('video.altaCategoriaSub') }}">
+            <span class="sidebar-mini">  </span>
+            <span class="sidebar-normal">Altas y Bajas  </span>
+          </a>
+        </li>
+      @endif
 
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('video.altaCategoriaSub') }}">
-          <span class="sidebar-mini">  </span>
-          <span class="sidebar-normal">Altas y Bajas  </span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('video.videoMostrar') }}">
-          <span class="sidebar-mini">  </span>
-          <span class="sidebar-normal">Mostrar videos </span>
-        </a>
-      </li>
       {{--Apartado para las 4 secciones, posiblemente se quiten 
       <li class="nav-item">
         <a class="nav-link" href="{{ route('video.maquinariayEquipos') }}">

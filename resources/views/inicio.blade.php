@@ -11,7 +11,7 @@
                 {{-- Iterar sobre las categorías --}}
                 @php
                         $colores = [
-                            '#558B2F', // Verde oliva oscuro 
+                            '#6A1B9A', // Verde oliva oscuro 
                             '#1B5E20', // Verde bosque
                             '#4E342E', // Marrón oscuro
                             '#FF6F00', // Naranja brillante
@@ -50,7 +50,7 @@
                     </div>
 
                     <!-- Modal para cada categoría -->
-                    <div class="modal fade main-modal" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog">
+                    <div class="modal fade main-modal" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog" style="overflow-y: scroll;">
                         <div class="modal-dialog modal-fullscreen-custom" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -86,8 +86,9 @@
 
                                                                 <!-- Contenido del Video -->
                                                                 <div id="collapseVideo{{ $video->id }}" class="collapse" aria-labelledby="headingVideo{{ $video->id }}" data-parent="#collapseSubcategoria{{ $subcategoria->id }}">
-                                                                <div class="card-body">
+                                                                <div class="card-bodyD">
                                                                     {{ $video->descripcion }}
+                                                                    {{-- nl2br(e($video->descripcion)) --}}
                                                                     <br>
                                                                     <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#videoContainer{{ $video->id }}">
                                                                         Ver Video
@@ -145,7 +146,18 @@
     }
 
   </style>
+  <script>
+    document.querySelectorAll('.card-bodyD').forEach(function(div) {
+    div.innerHTML = div.innerHTML.replace(/(\r\n|\r|\n){2,}/g, '$1');
+});
+
+  </script>
   <style>
+
+    .card-bodyD {
+        white-space: pre-line; /* Esto respetará los saltos de línea y espacios en blanco */
+        line-height: 1.5; 
+    }
 
     .video-container {
         margin-top: 15px;
@@ -260,15 +272,15 @@
 
 <script>
     const elementoTexto = document.getElementById('texto-escritura');
-    const texto = 'Centro de Desarrollo Habilidades Intimark 👋';
+    const texto = 'Centro de Desarrollo Habilidades Intimark';
     let indiceActual = 0;
-    let tiempoEspera = 70; // Tiempo entre letras en milisegundos
+    let tiempoEspera = 60; // Tiempo entre letras en milisegundos
 
     function escribirTexto() {
         if (indiceActual < texto.length) {
             elementoTexto.innerHTML += texto[indiceActual];
             indiceActual++;
-            if (texto[indiceActual - 1] === ' ' || texto[indiceActual - 1] === '👋') {
+            if (texto[indiceActual - 1] === ' ' || texto[indiceActual - 1] === ' ') {
                 // Aumentar el tiempo de espera después de un espacio o al final
                 setTimeout(escribirTexto, 650);
             } else {
