@@ -88,7 +88,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('video.altaCategoriaSub') }}">
           <span class="sidebar-mini">  </span>
-          <span class="sidebar-normal">Altas  </span>
+          <span class="sidebar-normal">Altas y Bajas  </span>
         </a>
       </li>
 
