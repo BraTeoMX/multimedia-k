@@ -61,7 +61,7 @@
           </div>
         </div>
       </form>
-    <!--  <div class="row">
+      <div class="row">
         <div class="col-6">
             @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" class="text-light">
@@ -74,7 +74,7 @@
                 <small>{{ __('Crear Nuevo Registro') }}</small>
             </a>
         </div>
-      </div>-->
+      </div>
     </div>
   </div>
 </div>

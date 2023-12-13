@@ -50,7 +50,7 @@
                     </div>
 
                     <!-- Modal para cada categoría -->
-                    <div class="modal fade main-modal" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog" style="overflow-y: scroll;">
+                    <div class="modal fade main-modal modal-scrollable" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog" style="overflow-y: scroll;">
                         <div class="modal-dialog modal-fullscreen-custom" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -190,6 +190,11 @@
     .modal-body {
         overflow-y: auto; /* Habilitar desplazamiento vertical solo en modal-body */
         max-height: calc(100vh - 120px); /* Altura máxima ajustada para permitir la barra de título y algo de margen */
+    }
+
+    .modal-scrollable {
+        overflow-y: auto; /* Cambiar a auto para mejor manejo del scroll */
+        max-height: 100vh;
     }
 
 
