@@ -5,7 +5,7 @@
 <div class="content">
     <div class="container-fluid">
         <div class="card-header card-header-info card-header-icon">
-            <h2 id="texto-escritura" class="estilo-mensaje"></h2>
+            <h2 id="texto-escritura" class="estilo-mensaje fade-inH2">Centro de Desarrollo Habilidades Intimark</h2>
 
             <div class="row">
                 {{-- Iterar sobre las categorías --}}
@@ -56,7 +56,7 @@
                         <div class="modal-dialog modal-fullscreen-custom" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">{{ $categoria->nombre }}</h5>
+                                    <h3 class="modal-title" style="color: {{ $color }}; margin: auto;">{{ $categoria->nombre }}</h3>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -139,6 +139,10 @@
     .fade-in {
         margin-bottom: 20px; /* Ajusta este valor según tus necesidades */
         animation: fadeIn 2s ease-out forwards;
+    }
+    .fade-inH2 {
+        margin-bottom: 30px; /* Ajusta este valor según tus necesidades */
+        animation: fadeIn 3s ease-out forwards;
     }
 
     @media (max-width: 768px) { /* Para dispositivos móviles */
@@ -253,17 +257,24 @@
         font-family: Arial, Helvetica, sans-serif;
     }
 
+    .modal-title{
+        font-weight: bold;
+        text-align: center !important; /* Usa !important para asegurar prioridad */
+    }
+
+
+
     /*Propiedades del boton  */
     /* Agrega esto a tu archivo de estilos CSS */
     .btn-personalizado {
-        background-color: #0c509e; /* Color naranja brillante similar al de las tarjetas */
+        background-color: #463C3C; /* Color naranja brillante similar al de las tarjetas */
         color: #FFFFFF; /* Color del texto en blanco para contrastar con el fondo */
-        border: 1px solid #0c509e; /* Borde con el mismo color que el fondo */
+        border: 1px solid #463C3C; /* Borde con el mismo color que el fondo */
         transition: background-color 0.3s ease; /* Efecto de transición suave */
         font-size: 16px; /* Tamaño del texto ajustado según tus preferencias */
     }
     .btn-personalizado:hover {
-    background-color: #2b609c; /* Color ligeramente más oscuro al pasar el mouse */
+    background-color: #635858; /* Color ligeramente más oscuro al pasar el mouse */
 }
 
   </style>
@@ -291,27 +302,6 @@
 
 </style>
 
-<script>
-    const elementoTexto = document.getElementById('texto-escritura');
-    const texto = 'Centro de Desarrollo Habilidades Intimark';
-    let indiceActual = 0;
-    let tiempoEspera = 50; // Tiempo entre letras en milisegundos
-
-    function escribirTexto() {
-        if (indiceActual < texto.length) {
-            elementoTexto.innerHTML += texto[indiceActual];
-            indiceActual++;
-            if (texto[indiceActual - 1] === ' ' || texto[indiceActual - 1] === ' ') {
-                // Aumentar el tiempo de espera después de un espacio o al final
-                setTimeout(escribirTexto, 650);
-            } else {
-                setTimeout(escribirTexto, tiempoEspera);
-            }
-        }
-    }
-
-    escribirTexto(); // Iniciar la función al cargar la página
-</script>
 
 <script>
     $(document).ready(function() {
