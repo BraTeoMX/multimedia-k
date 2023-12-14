@@ -111,8 +111,28 @@
             var currentModal = $('.modal.show'); // Obtener el modal actualmente abierto
             var categoryId = currentModal.attr('id').split('-')[1];
             var videoContainer = document.getElementById('videoColumn-' + categoryId);
-            videoContainer.innerHTML = '<video width="100%" controls><source src="' + videoURL + '" type="video/mp4">Tu navegador no admite la etiqueta de video.</video>';
-            videoContainer.innerHTML += '<p>' + videoDescripcion.replace(/\n/g, '<br>') + '</p>';
+            
+            // Limpiar la columna de videos antes de agregar nuevos elementos
+            videoContainer.innerHTML = '';
+
+            var video = document.createElement('video');
+            video.width = '100%';
+            video.controls = true;
+            var source = document.createElement('source');
+            source.src = videoURL;
+            source.type = 'video/mp4';
+            video.appendChild(source);
+
+            // Agregar video al contenedor
+            videoContainer.appendChild(video);
+
+            // Dividir la descripción en líneas y agregarlas al contenedor
+            var descriptionLines = videoDescripcion.split(/\r?\n/);
+            descriptionLines.forEach(function(line) {
+                var p = document.createElement('p');
+                p.innerHTML = line;
+                videoContainer.appendChild(p);
+            });
         }
 
         
