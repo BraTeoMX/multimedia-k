@@ -116,6 +116,7 @@
                             </div>
                         </div>
                     </div>
+                    {{--Fin del modal --}}
                 @endforeach
             </div>
         </div>
