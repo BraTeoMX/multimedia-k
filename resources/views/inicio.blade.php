@@ -52,71 +52,70 @@
                     
 
                     <!-- Modal para cada categoría -->
-                    <div class="modal fade main-modal modal-scrollable" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog" style="overflow-y: scroll;">
-                        <div class="modal-dialog modal-fullscreen-custom" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 class="modal-title" style="color: {{ $color }}; margin: auto;">{{ $categoria->nombre }}</h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                        Cerrar
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="accordion" id="accordionCategoria-{{ $categoria->id }}">
-                                        @foreach($categoria->subcategorias as $subcategoria)
-                                            <div class="card custom-card">
-                                                <div class="card-header custom-card-header" id="headingSubcategoria{{ $subcategoria->id }}">
-                                                    <h2 class="mb-0" style="background-color: {{ $color }}">
-                                                        <button class="btn btn-link  btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseSubcategoria{{ $subcategoria->id }}" aria-expanded="true" aria-controls="collapseSubcategoria{{ $subcategoria->id }}" style="color: #ffffff !important;">
-                                                            {{ $subcategoria->nombre }}
-                                                        </button>
-                                                    </h2>
-                                                </div>
-                                                <div id="collapseSubcategoria{{ $subcategoria->id }}" class="collapse" aria-labelledby="headingSubcategoria{{ $subcategoria->id }}" data-parent="#accordionCategoria-{{ $categoria->id }}">
-                                                    <div class="card-body">
-                                                        @foreach($subcategoria->videos as $video)
-                                                            <!-- Aquí va la estructura del video como en tu vista de 'Maquinaria y Equipos' -->
-                                                            <div class="card custom-card">
-                                                                <!-- Encabezado del Video -->
-                                                                <div class="card-header custom-card-header" id="headingVideo{{ $video->id }}">
-                                                                <h2 class="mb-0" style="background-color: {{ $color }}">
-                                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseVideo{{ $video->id }}" aria-expanded="true" aria-controls="collapseVideo{{ $video->id }}" style="color: #ffffff !important;">
-                                                                    {{ $video->titulo }}
-                                                                    </button>
-                                                                </h2>
-                                                                </div>
-
-                                                                <!-- Contenido del Video -->
-                                                                <div id="collapseVideo{{ $video->id }}" class="collapse" aria-labelledby="headingVideo{{ $video->id }}" data-parent="#collapseSubcategoria{{ $subcategoria->id }}">
-                                                                <div class="card-bodyD">
-                                                                    {{ $video->descripcion }}
-                                                                    {{-- nl2br(e($video->descripcion)) --}}
-                                                                    <br>
-                                                                    <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#videoContainer{{ $video->id }}">
-                                                                        Ver Video
-                                                                    </button>
-
-                                                                    <!-- Div Colapsable para el Video -->
-                                                                    <div id="videoContainer{{ $video->id }}" class="collapse video-container">
-                                                                        <video id="video{{ $video->id }}" width="100%" controls>
-                                                                            <source src="{{ Storage::url($video->link) }}" type="video/mp4">
-                                                                            Tu navegador no admite la etiqueta de video.
-                                                                        </video>
-                                                                    </div>
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
+<div class="modal fade main-modal modal-scrollable" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog" style="overflow-y: scroll;">
+    <div class="modal-dialog modal-fullscreen-custom" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" style="color: {{ $color }}; margin: auto;">{{ $categoria->nombre }}</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    Cerrar
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <!-- Primera columna -->
+                    <div class="col-md-6">
+                        <div class="accordion" id="accordionCategoria-{{ $categoria->id }}">
+                            @foreach($categoria->subcategorias as $subcategoria)
+                                <div class="card custom-card">
+                                    <div class="card-header custom-card-header" id="headingSubcategoria{{ $subcategoria->id }}">
+                                        <h2 class="mb-0" style="background-color: {{ $color }}">
+                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseSubcategoria{{ $subcategoria->id }}" aria-expanded="true" aria-controls="collapseSubcategoria{{ $subcategoria->id }}" style="color: #ffffff !important;">
+                                                {{ $subcategoria->nombre }}
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseSubcategoria{{ $subcategoria->id }}" class="collapse" aria-labelledby="headingSubcategoria{{ $subcategoria->id }}" data-parent="#accordionCategoria-{{ $categoria->id }}">
+                                        <div class="card-body">
+                                            <!-- Información de la Subcategoría -->
+                                            <div class="subcategoria-info">
+                                                @foreach($subcategoria->videos as $video)
+                                                    <h5>{{ $video->titulo }}</h5>
+                                                    <button type="button" class="btn btn-danger" onclick="showVideo('{{ Storage::url($video->link) }}')">
+                                                        Ver Video
+                                                    </button>
+                                                @endforeach
                                             </div>
-                                        @endforeach
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
-                    {{--Fin del modal --}}
+
+                    <!-- Segunda columna para el video -->
+                    <div class="col-md-6" id="videoColumn">
+                        <div class="video-container">
+                            <!-- Contenido de la columna de videos -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- Fin del modal --}}
+
+<script>
+    function showVideo(videoURL) {
+        var videoContainer = document.getElementById('videoColumn');
+        videoContainer.innerHTML = '<video width="100%" controls><source src="' + videoURL + '" type="video/mp4">Tu navegador no admite la etiqueta de video.</video>';
+            videoContainer.innerHTML += '<p>' + videoDescripcion + '</p>';
+    }
+</script>
+
+
+
                 @endforeach
             </div>
         </div>
