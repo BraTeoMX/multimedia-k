@@ -36,87 +36,90 @@
                         $index = 0;
                 @endphp
                 @foreach($categorias as $categoria)
-                    @php
-                        $color = $colores[$index % count($colores)];
-                        $index++;
-                    @endphp
-                    <div class="col-lg-3 col-md-6 col-sm-12 fade-in">
-                        <div class="card text-center h-100 shadow" style="border: 50px solid {{ $color }}; background-color: white;">
-                            <div class="card-body d-flex flex-column card-text-white" style="color: {{ $color }};">
-                                <h5 class="card-title" style="color: {{ $color }};">{{ $categoria->nombre }}</h5>
-                                <p class="card-text" style="color: {{ $color }};">Descripción o más detalles de la categoría</p>
-                                <button type="button" class="btn btn-personalizado mt-auto" data-toggle="modal" data-target="#categoriaModal-{{ $categoria->id }}">Administrar</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-
-                    <!-- Modal para cada categoría -->
-<div class="modal fade main-modal modal-scrollable" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog" style="overflow-y: scroll;">
-    <div class="modal-dialog modal-fullscreen-custom" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" style="color: {{ $color }}; margin: auto;">{{ $categoria->nombre }}</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                    Cerrar
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <!-- Primera columna -->
-                    <div class="col-md-6">
-                        <div class="accordion" id="accordionCategoria-{{ $categoria->id }}">
-                            @foreach($categoria->subcategorias as $subcategoria)
-                                <div class="card custom-card">
-                                    <div class="card-header custom-card-header" id="headingSubcategoria{{ $subcategoria->id }}">
-                                        <h2 class="mb-0" style="background-color: {{ $color }}">
-                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseSubcategoria{{ $subcategoria->id }}" aria-expanded="true" aria-controls="collapseSubcategoria{{ $subcategoria->id }}" style="color: #ffffff !important;">
-                                                {{ $subcategoria->nombre }}
-                                            </button>
-                                        </h2>
-                                    </div>
-                                    <div id="collapseSubcategoria{{ $subcategoria->id }}" class="collapse" aria-labelledby="headingSubcategoria{{ $subcategoria->id }}" data-parent="#accordionCategoria-{{ $categoria->id }}">
-                                        <div class="card-body">
-                                            <!-- Información de la Subcategoría -->
-                                            <div class="subcategoria-info">
-                                                @foreach($subcategoria->videos as $video)
-                                                    <h5>{{ $video->titulo }}</h5>
-                                                    <button type="button" class="btn btn-danger" onclick="showVideo('{{ Storage::url($video->link) }}')">
-                                                        Ver Video
-                                                    </button>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <!-- Segunda columna para el video -->
-                    <div class="col-md-6" id="videoColumn">
-                        <div class="video-container">
-                            <!-- Contenido de la columna de videos -->
+                @php
+                    $color = $colores[$index % count($colores)];
+                    $index++;
+                @endphp
+                <div class="col-lg-3 col-md-6 col-sm-12 fade-in">
+                    <div class="card text-center h-100 shadow" style="border: 50px solid {{ $color }}; background-color: white;">
+                        <div class="card-body d-flex flex-column card-text-white" style="color: {{ $color }};">
+                            <h5 class="card-title" style="color: {{ $color }};">{{ $categoria->nombre }}</h5>
+                            <p class="card-text" style="color: {{ $color }};">Descripción o más detalles de la categoría</p>
+                            <button type="button" class="btn btn-personalizado mt-auto" data-toggle="modal" data-target="#categoriaModal-{{ $categoria->id }}">Administrar</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-{{-- Fin del modal --}}
+            
+                <!-- Modal para cada categoría -->
+                <div class="modal fade main-modal modal-scrollable" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog" style="overflow-y: scroll;">
+                    <div class="modal-dialog modal-fullscreen-custom" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" style="color: {{ $color }}; margin: auto;">{{ $categoria->nombre }}</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                    Cerrar
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <!-- Primera columna -->
+                                    <div class="col-md-6">
+                                        <div class="accordion" id="accordionCategoria-{{ $categoria->id }}">
+                                            @foreach($categoria->subcategorias as $subcategoria)
+                                                <div class="card custom-card">
+                                                    <div class="card-header custom-card-header" id="headingSubcategoria{{ $subcategoria->id }}">
+                                                        <h2 class="mb-0" style="background-color: {{ $color }}">
+                                                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseSubcategoria{{ $subcategoria->id }}" aria-expanded="true" aria-controls="collapseSubcategoria{{ $subcategoria->id }}" style="color: #ffffff !important;">
+                                                                {{ $subcategoria->nombre }}
+                                                            </button>
+                                                        </h2>
+                                                    </div>
+                                                    <div id="collapseSubcategoria{{ $subcategoria->id }}" class="collapse" aria-labelledby="headingSubcategoria{{ $subcategoria->id }}" data-parent="#accordionCategoria-{{ $categoria->id }}">
+                                                        <div class="card-body">
+                                                            <!-- Información de la Subcategoría -->
+                                                            <div class="subcategoria-info">
+                                                                @foreach($subcategoria->videos as $video)
+                                                                    <h5>{{ $video->titulo }}</h5>
+                                                                    <button type="button" class="btn btn-danger" onclick="showVideo('{{ Storage::url($video->link) }}', '{{ $video->descripcion }}')">
+                                                                        Ver Video
+                                                                    </button>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+            
+                                    <!-- Segunda columna para el video y la descripción -->
+                                    <div class="col-md-6" id="videoColumn-{{ $categoria->id }}">
+                                        <div class="video-container">
+                                            <!-- Contenido de la columna de videos y descripción -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- Fin del modal --}}
+            @endforeach
+            
+            <script>
+                function showVideo(videoURL, videoDescripcion) {
+            var currentModal = $('.modal.show'); // Obtener el modal actualmente abierto
+            var categoryId = currentModal.attr('id').split('-')[1];
+            var videoContainer = document.getElementById('videoColumn-' + categoryId);
+            videoContainer.innerHTML = '<video width="100%" controls><source src="' + videoURL + '" type="video/mp4">Tu navegador no admite la etiqueta de video.</video>';
+            videoContainer.innerHTML += '<p>' + videoDescripcion.replace(/\n/g, '<br>') + '</p>';
+        }
 
-<script>
-    function showVideo(videoURL) {
-        var videoContainer = document.getElementById('videoColumn');
-        videoContainer.innerHTML = '<video width="100%" controls><source src="' + videoURL + '" type="video/mp4">Tu navegador no admite la etiqueta de video.</video>';
-            videoContainer.innerHTML += '<p>' + videoDescripcion + '</p>';
-    }
-</script>
+        
 
-
-
-                @endforeach
+            </script>
+            
+            
             </div>
         </div>
     </div>
@@ -151,14 +154,7 @@
         }
     }
 
-  </style>
-  <script>
-    document.querySelectorAll('.card-bodyD').forEach(function(div) {
-    div.innerHTML = div.innerHTML.replace(/(\r\n|\r|\n){2,}/g, '$1');
-});
 
-  </script>
-  <style>
 
     .card-bodyD {
         white-space: pre-line; /* Esto respetará los saltos de línea y espacios en blanco */
