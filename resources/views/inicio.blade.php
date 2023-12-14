@@ -57,8 +57,8 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h3 class="modal-title" style="color: {{ $color }}; margin: auto;">{{ $categoria->nombre }}</h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                        Cerrar
                                     </button>
                                 </div>
                                 <div class="modal-body">
