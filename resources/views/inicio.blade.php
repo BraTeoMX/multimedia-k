@@ -98,6 +98,9 @@
                                             <!-- Contenido de la columna de videos y descripción -->
                                         </div>
                                     </div>
+                                    <div class="col-md-6" id="descriptionColumn-{{ $categoria->id }}" style="display: none;">
+                                        <!-- Contenido de la columna de descripción -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -108,34 +111,22 @@
             
             <script>
                 function showVideo(videoURL, videoDescripcion) {
-            var currentModal = $('.modal.show'); // Obtener el modal actualmente abierto
-            var categoryId = currentModal.attr('id').split('-')[1];
-            var videoContainer = document.getElementById('videoColumn-' + categoryId);
-            
-            // Limpiar la columna de videos antes de agregar nuevos elementos
-            videoContainer.innerHTML = '';
+                    var currentModal = $('.modal.show');
+                    var categoryId = currentModal.attr('id').split('-')[1];
+                    var videoContainer = $('#videoColumn-' + categoryId);
 
-            var video = document.createElement('video');
-            video.width = '100%';
-            video.controls = true;
-            var source = document.createElement('source');
-            source.src = videoURL;
-            source.type = 'video/mp4';
-            video.appendChild(source);
+                    // Limpiar la columna de videos antes de agregar nuevos elementos
+                    videoContainer.empty();
 
-            // Agregar video al contenedor
-            videoContainer.appendChild(video);
+                    var video = $('<video width="100%" controls><source src="' + videoURL + '" type="video/mp4">Tu navegador no admite la etiqueta de video.</video>');
 
-            // Dividir la descripción en líneas y agregarlas al contenedor
-            var descriptionLines = videoDescripcion.split(/\r?\n/);
-            descriptionLines.forEach(function(line) {
-                var p = document.createElement('p');
-                p.innerHTML = line;
-                videoContainer.appendChild(p);
-            });
-        }
+                    // Agregar video al contenedor
+                    videoContainer.append(video);
 
-        
+                    // Agregar descripción debajo del video
+                    var description = $('<p>' + videoDescripcion + '</p>');
+                    videoContainer.append(description);
+                }
 
             </script>
             
