@@ -11,7 +11,7 @@
                 {{-- Iterar sobre las categorías --}}
                 @php
                         $colores = [
-                            '#6A1B9A', // Verde oliva oscuro 
+                            '#6A1B9A', // Púrpura más vibrante
                             '#1B5E20', // Verde bosque
                             '#4E342E', // Marrón oscuro
                             '#FF6F00', // Naranja brillante
@@ -29,9 +29,10 @@
                             '#D84315', // Naranja quemado
                             '#9E9D24', // Verde amarillento, como oliva clara
                             '#827717', // Verde oliva oscuro
-                            '#6A1B9A', // Púrpura más vibrante
+                            '#6A1B9A', // Verde oliva oscuro
                             '#3E2723'  // Azul cobalto, azul intenso y brillante
                         ];
+
                         $index = 0;
                 @endphp
                 @foreach($categorias as $categoria)
@@ -39,15 +40,16 @@
                         $color = $colores[$index % count($colores)];
                         $index++;
                     @endphp
-                    <div class="col-md-6 fade-in">
-                        <div class="card text-center h-100 shadow" style="background-color: {{ $color }}">
-                            <div class="card-body d-flex flex-column card-text-white">
-                                <h5 class="card-title">{{ $categoria->nombre }}</h5>
-                                <p class="card-text">Descripción o más detalles de la categoría</p>
-                                <button type="button" class="btn btn-danger mt-auto" data-toggle="modal" data-target="#categoriaModal-{{ $categoria->id }}">Administrar</button>
+                    <div class="col-lg-3 col-md-6 col-sm-12 fade-in">
+                        <div class="card text-center h-100 shadow" style="border: 50px solid {{ $color }}; background-color: white;">
+                            <div class="card-body d-flex flex-column card-text-white" style="color: {{ $color }};">
+                                <h5 class="card-title" style="color: {{ $color }};">{{ $categoria->nombre }}</h5>
+                                <p class="card-text" style="color: {{ $color }};">Descripción o más detalles de la categoría</p>
+                                <button type="button" class="btn btn-personalizado mt-auto" data-toggle="modal" data-target="#categoriaModal-{{ $categoria->id }}">Administrar</button>
                             </div>
                         </div>
                     </div>
+                    
 
                     <!-- Modal para cada categoría -->
                     <div class="modal fade main-modal modal-scrollable" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog" style="overflow-y: scroll;">
@@ -230,10 +232,12 @@
 
     .card-title {
         font-size: 30px; /* Ajusta este valor según tus necesidades */
+        font-weight: bold;
     }
 
     .card-text {
         font-size: 18px; /* Ajusta este valor según tus necesidades */
+        font-weight: bold;
     }
 
     .card-body .btn-primary, 
@@ -249,6 +253,18 @@
         font-family: Arial, Helvetica, sans-serif;
     }
 
+    /*Propiedades del boton  */
+    /* Agrega esto a tu archivo de estilos CSS */
+    .btn-personalizado {
+        background-color: #0c509e; /* Color naranja brillante similar al de las tarjetas */
+        color: #FFFFFF; /* Color del texto en blanco para contrastar con el fondo */
+        border: 1px solid #0c509e; /* Borde con el mismo color que el fondo */
+        transition: background-color 0.3s ease; /* Efecto de transición suave */
+        font-size: 16px; /* Tamaño del texto ajustado según tus preferencias */
+    }
+    .btn-personalizado:hover {
+    background-color: #2b609c; /* Color ligeramente más oscuro al pasar el mouse */
+}
 
   </style>
 
@@ -279,7 +295,7 @@
     const elementoTexto = document.getElementById('texto-escritura');
     const texto = 'Centro de Desarrollo Habilidades Intimark';
     let indiceActual = 0;
-    let tiempoEspera = 60; // Tiempo entre letras en milisegundos
+    let tiempoEspera = 50; // Tiempo entre letras en milisegundos
 
     function escribirTexto() {
         if (indiceActual < texto.length) {
