@@ -81,7 +81,7 @@
                                                                 @foreach($subcategoria->videos as $video)
                                                                     <h5>{{ $video->titulo }}</h5>
                                                                     <p>{{ $video->descripcion }}</p> <!-- Mueve la descripción aquí -->
-                                                                    <button type="button" class="btn btn-danger" onclick="showVideo('{{ Storage::url($video->link) }}', '{{ $video->descripcion }}')">
+                                                                    <button type="button" class="btn btn-danger" onclick="showVideo('{{ Storage::url($video->link) }}')">
                                                                         Ver Video
                                                                     </button>
                                                                 @endforeach
