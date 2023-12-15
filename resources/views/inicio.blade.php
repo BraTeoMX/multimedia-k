@@ -144,7 +144,18 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        // Configuración del acordeón
+        $('.collapse').on('show.bs.collapse', function () {
+            $(this).siblings('.card-header').find('button').attr('aria-expanded', 'true');
+        });
 
+        $('.collapse').on('hide.bs.collapse', function () {
+            $(this).siblings('.card-header').find('button').attr('aria-expanded', 'false');
+        });
+    });
+</script>
   <style>
     @keyframes fadeIn {
         from {
