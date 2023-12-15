@@ -80,6 +80,7 @@
                                                             <div class="subcategoria-info">
                                                                 @foreach($subcategoria->videos as $video)
                                                                     <h5>{{ $video->titulo }}</h5>
+                                                                    <p>{{ $video->descripcion }}</p> <!-- Mueve la descripción aquí -->
                                                                     <button type="button" class="btn btn-danger" onclick="showVideo('{{ Storage::url($video->link) }}', '{{ $video->descripcion }}')">
                                                                         Ver Video
                                                                     </button>
@@ -98,9 +99,6 @@
                                             <!-- Contenido de la columna de videos y descripción -->
                                         </div>
                                     </div>
-                                    <div class="col-md-6" id="descriptionColumn-{{ $categoria->id }}" style="display: none;">
-                                        <!-- Contenido de la columna de descripción -->
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +108,7 @@
             @endforeach
             
             <script>
-                function showVideo(videoURL, videoDescripcion) {
+                function showVideo(videoURL) {
                     var currentModal = $('.modal.show');
                     var categoryId = currentModal.attr('id').split('-')[1];
                     var videoContainer = $('#videoColumn-' + categoryId);
@@ -122,10 +120,6 @@
 
                     // Agregar video al contenedor
                     videoContainer.append(video);
-
-                    // Agregar descripción debajo del video
-                    var description = $('<p>' + videoDescripcion + '</p>');
-                    videoContainer.append(description);
                 }
 
             </script>
