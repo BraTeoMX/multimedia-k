@@ -79,11 +79,25 @@
                                                             <!-- Información de la Subcategoría -->
                                                             <div class="subcategoria-info">
                                                                 @foreach($subcategoria->videos as $video)
-                                                                    <h5>{{ $video->titulo }}</h5>
-                                                                    <p>{{ $video->descripcion }}</p> <!-- Mueve la descripción aquí -->
-                                                                    <button type="button" class="btn btn-danger" onclick="showVideo('{{ Storage::url($video->link) }}')">
-                                                                        Ver Video
-                                                                    </button>
+                                                                    <div class="accordion" id="accordionVideo-{{ $video->id }}">
+                                                                        <div class="card custom-card">
+                                                                            <div class="card-header custom-card-header" id="headingVideo{{ $video->id }}">
+                                                                                <h2 class="mb-0" style="background-color: {{ $color }}">
+                                                                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseVideo{{ $video->id }}" aria-expanded="true" aria-controls="collapseVideo{{ $video->id }}" style="color: #ffffff !important;">
+                                                                                        {{ $video->titulo }}
+                                                                                    </button>
+                                                                                </h2>
+                                                                            </div>
+                                                                            <div id="collapseVideo{{ $video->id }}" class="collapse" aria-labelledby="headingVideo{{ $video->id }}" data-parent="#accordionVideo-{{ $video->id }}">
+                                                                                <div class="card-body">
+                                                                                    <p>{{ $video->descripcion }}</p>
+                                                                                    <button type="button" class="btn btn-danger" onclick="showVideo('{{ Storage::url($video->link) }}')">
+                                                                                        Ver Video
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 @endforeach
                                                             </div>
                                                         </div>
