@@ -40,7 +40,7 @@
                     $color = $colores[$index % count($colores)];
                     $index++;
                 @endphp
-                <div class="col-lg-3 col-md-6 col-sm-12 fade-in">
+                <div class="col-lg-4 col-md-6 col-sm-12 fade-in">
                     <div class="card text-center h-100 shadow" style="border: 50px solid {{ $color }}; background-color: white;">
                         <div class="card-body d-flex flex-column card-text-white" style="color: {{ $color }};">
                             <h5 class="card-title" style="color: {{ $color }};">{{ $categoria->nombre }}</h5>

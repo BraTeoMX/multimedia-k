@@ -85,7 +85,11 @@ class VideoController extends Controller
     
     public function registroVideo(Request $request)
     {
-        
+        //phpinfo();
+
+        //dd($request->file('cargaVideo')->getError());
+
+        //dd($request);
         $request->validate([
             'tituloVideo' => 'required',
             'descripcionVideo' => 'required',
@@ -93,6 +97,7 @@ class VideoController extends Controller
             'categoria_id' => 'required', 
             'subcategoria_id' => 'required' 
         ]);
+        
         
         $tituloVideo = $request->input('tituloVideo');
         $descripcionVideo = nl2br($request->input('descripcionVideo')); // Aplicar nl2br aquí
