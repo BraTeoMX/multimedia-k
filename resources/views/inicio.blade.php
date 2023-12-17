@@ -45,23 +45,15 @@
                         <div class="card-body d-flex flex-column card-text-white" style="color: {{ $color }};">
                             <h5 class="card-title" style="color: {{ $color }};">{{ $categoria->nombre }}</h5>
                             <p class="card-text" style="color: {{ $color }};">Descripción o más detalles de la categoría</p>
-                            <button type="button" class="btn btn-personalizado mt-auto" data-toggle="modal" data-target="#categoriaModal-{{ $categoria->id }}">Administrar</button>
+                            <a href="#categoria-{{ $categoria->id }}" class="btn btn-personalizado mt-auto">Administrar</a>
+                            {{--<button type="button" class="btn btn-personalizado mt-auto" data-toggle="modal" data-target="#categoriaModal-{{ $categoria->id }}">Administrar</button>
+                        --}}
                         </div>
                     </div>
                 </div>
-            
-                <!-- Modal para cada categoría -->
-                <div class="modal fade main-modal modal-scrollable" id="categoriaModal-{{ $categoria->id }}" tabindex="-1" role="dialog" style="overflow-y: scroll;">
-                    <div class="modal-dialog modal-fullscreen-custom" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title" style="color: {{ $color }}; margin: auto;">{{ $categoria->nombre }}</h3>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                    Cerrar
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
+                <a name="categoria-{{ $categoria->id }}"></a>
+                
+                           
                                     <!-- Primera columna -->
                                     <div class="col-md-6">
                                         <div class="accordion" id="accordionCategoria-{{ $categoria->id }}">
@@ -113,11 +105,8 @@
                                             <!-- Contenido de la columna de videos y descripción -->
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                              
+                            
                 {{-- Fin del modal --}}
             @endforeach
             
