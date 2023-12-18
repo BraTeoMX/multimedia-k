@@ -92,7 +92,7 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <!-- Primera columna con acordeón de subcategorías -->
-                                            <div class="col-md-6">
+                                            <div class="col-md-8">
                                                 <div class="accordion" id="accordionCategoria-{{ $categoria->id }}">
                                                     @foreach ($categoria->subcategorias as $subcategoria)
                                                         <div class="card custom-card">
@@ -136,7 +136,7 @@
                                             </div>
 
                                             <!-- Segunda columna para el video y la descripción -->
-                                            <div class="col-md-6" id="videoColumn-{{ $categoria->id }}">
+                                            <div class="col-md-4" id="videoColumn-{{ $categoria->id }}">
                                                 <div class="video-container">
                                                     <!-- Contenido de la columna de videos y descripción -->
                                                     @foreach ($categoria->subcategorias as $subcategoria)
