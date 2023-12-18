@@ -141,6 +141,7 @@
     </div>
 
 
+<<<<<<< HEAD
     <style>
         @keyframes fadeIn {
             from {
@@ -153,6 +154,13 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+=======
+  <style>
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px); /* Puedes ajustar este valor si lo necesitas */
+>>>>>>> parent of 2198cb9 (Ultimo cambio generado)
         }
 
 
