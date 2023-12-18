@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'avanceproduccion', 'titlePage' => __('avanceproduccion')])
 
-@section('content')
+@section('content') 
 
 <div class="content">
     <div class="container-fluid">
