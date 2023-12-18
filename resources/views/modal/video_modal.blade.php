@@ -1,5 +1,5 @@
 <div class="modal fade" id="videoModal-{{ $video->id }}" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel-{{ $video->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="videoModalLabel-{{ $video->id }}">{{ $video->titulo }}</h5>

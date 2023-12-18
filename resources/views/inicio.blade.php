@@ -114,24 +114,7 @@
     @endforeach
 @endforeach
             @endforeach
-            
-            <script>
-                function showVideo(videoURL) {
-                    var currentModal = $('.modal.show');
-                    var categoryId = currentModal.attr('id').split('-')[1];
-                    var videoContainer = $('#videoColumn-' + categoryId);
-
-                    // Limpiar la columna de videos antes de agregar nuevos elementos
-                    videoContainer.empty();
-
-                    var video = $('<video width="100%" controls><source src="' + videoURL + '" type="video/mp4">Tu navegador no admite la etiqueta de video.</video>');
-
-                    // Agregar video al contenedor
-                    videoContainer.append(video);
-                }
-
-            </script>
-            
+  
             
             </div>
         </div>
