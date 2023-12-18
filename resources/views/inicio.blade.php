@@ -141,19 +141,7 @@
     </div>
 
 
-    <style>
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-                /* Puedes ajustar este valor si lo necesitas */
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+  <style>
     @keyframes fadeIn {
         from {
             opacity: 0;
