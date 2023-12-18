@@ -90,7 +90,7 @@
                                                                             </div>
                                                                             <div id="collapseVideo{{ $video->id }}" class="collapse" aria-labelledby="headingVideo{{ $video->id }}" data-parent="#accordionVideo-{{ $video->id }}">
                                                                                 <div class="card-body">
-                                                                                    <p>{{ $video->descripcion }}</p>
+                                                                                    <p>{!! nl2br(e($video->descripcion)) !!}</p>
                                                                                     <button type="button" class="btn btn-danger" onclick="showVideo('{{ Storage::url($video->link) }}')">
                                                                                         Ver Video
                                                                                     </button>

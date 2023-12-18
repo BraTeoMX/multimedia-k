@@ -100,7 +100,7 @@ class VideoController extends Controller
         
         
         $tituloVideo = $request->input('tituloVideo');
-        $descripcionVideo = nl2br($request->input('descripcionVideo')); // Aplicar nl2br aquí
+        $descripcionVideo = $request->input('descripcionVideo'); // Aplicar nl2br aquí
         
         // Procesar el archivo de video
         if ($request->hasFile('cargaVideo')) {
