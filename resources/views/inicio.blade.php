@@ -32,13 +32,37 @@
                             '#6A1B9A', // Verde oliva oscuro
                             '#3E2723'  // Azul cobalto, azul intenso y brillante
                         ];
-
                         $index = 0;
+                        $coloresTitulo = [
+                            '#8E24AA', // Púrpura más claro
+                            '#388E3C', // Verde más claro
+                            '#6D4C41', // Marrón claro
+                            '#FFA000', // Naranja claro
+                            '#7B1FA2', // Púrpura claro
+                            '#BC477B', // Marrón claro, no tan oscuro
+                            '#303F9F', // Azul claro, no tan oscuro
+                            '#0277BD', // Azul claro, no tan oscuro
+                            '#00695C', // Verde azulado claro, no tan oscuro
+                            '#D84315', // Rojo anaranjado claro, no tan oscuro
+                            '#1565C0', // Borgoña o vino claro, no tan oscuro
+                            '#00838F', // Cian claro, no tan oscuro
+                            '#FFB300', // Naranja amarillento claro
+                            '#455A64', // Gris azulado claro, no tan oscuro
+                            '#388E3C', // Verde esmeralda claro
+                            '#EF6C00', // Naranja quemado claro
+                            '#AFB42B', // Verde amarillento claro, no tan oscuro
+                            '#9E9D24', // Verde oliva claro
+                            '#827717', // Verde oliva claro, no tan oscuro
+                            '#8E24AA', // Azul cobalto claro, no tan oscuro
+                        ];
+                        $indexTitulo = 0;
                 @endphp
                 @foreach($categorias as $categoria)
                 @php
                     $color = $colores[$index % count($colores)];
                     $index++;
+                    $colorTitulo = $coloresTitulo[$indexTitulo % count($coloresTitulo)];
+                    $indexTitulo++;
                 @endphp
                 <div class="col-lg-3 col-md-6 col-sm-12 fade-in">
                     <div class="card text-center h-100 shadow" style="border: 50px solid {{ $color }}; background-color: white;">
@@ -75,14 +99,14 @@
                                                         </h2>
                                                     </div>
                                                     <div id="collapseSubcategoria{{ $subcategoria->id }}" class="collapse" aria-labelledby="headingSubcategoria{{ $subcategoria->id }}" data-parent="#accordionCategoria-{{ $categoria->id }}">
-                                                        <div class="card-body">
+                                                        <div class="card-body" style="margin-left: 20px;">
                                                             <!-- Información de la Subcategoría -->
                                                             <div class="subcategoria-info">
                                                                 @foreach($subcategoria->videos as $video)
                                                                     <div class="accordion" id="accordionVideo-{{ $video->id }}">
                                                                         <div class="card custom-card">
                                                                             <div class="card-header custom-card-header" id="headingVideo{{ $video->id }}">
-                                                                                <h2 class="mb-0" style="background-color: {{ $color }}">
+                                                                                <h2 class="mb-0" style="background-color: {{ $colorTitulo }}">
                                                                                     <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseVideo{{ $video->id }}" aria-expanded="true" aria-controls="collapseVideo{{ $video->id }}" style="color: #ffffff !important;">
                                                                                         {{ $video->titulo }}
                                                                                     </button>
