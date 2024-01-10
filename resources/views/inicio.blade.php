@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'avanceproduccion', 'titlePage' => __('avanceproduccion')])
 
-@section('content')
+@section('content') 
 
 <div class="content">
     <div class="container-fluid">
@@ -109,7 +109,7 @@
                                                                                 <h2 class="mb-0" style="background-color: {{ $colorTitulo }}">
                                                                                     <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseVideo{{ $video->id }}" aria-expanded="true" aria-controls="collapseVideo{{ $video->id }}" style="color: #ffffff !important;">
                                                                                         {{ $video->titulo }}
-                                                                                    </button>
+                                                                                    </button>  
                                                                                 </h2>
                                                                             </div>
                                                                             <div id="collapseVideo{{ $video->id }}" class="collapse" aria-labelledby="headingVideo{{ $video->id }}" data-parent="#accordionVideo-{{ $video->id }}">
